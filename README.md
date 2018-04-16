@@ -10,7 +10,7 @@ Concepts--and that is just for Imperative
 
 Expect the Lingua Franca Programming Language
 
-for the Pardigm of Programming Language to
+for the Paradigm of Programming Language to
 
 contain its own version of EVERY Practical
 
