@@ -100,20 +100,9 @@ int main() {
 
 	// Stores number so value can be printed in cout below
 
-	const long long int input = number;  
-
 	long long int last_digit;
 
-	long long int reverse = 0; // Must be initialized as zero
 	
-	while (number > 0) {
-
-		last_digit = number % 10;
-
-		reverse = ( reverse * 10 ) + last_digit;
-
-		number = number / 10;
-	}
 
 /* An input of say, 176248 | 3 now reversed to be 3 | 842671 */
 
@@ -121,9 +110,9 @@ int main() {
 
 	int c = 1;
 
-	while (reverse > 0) {
+	while (number > 0) {
 
-		last_digit = reverse % 10;
+		last_digit = number % 10;
 
 		if ( c % 2 == 0 ) { // if digit is one of the "every other digit"
 
@@ -146,7 +135,7 @@ int main() {
 
 		}
 
-			reverse /= 10;
+			number /= 10;
 
 			c++;
 
