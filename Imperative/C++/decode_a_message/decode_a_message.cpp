@@ -156,7 +156,7 @@ int main() {
 
 	string decrypted_message = "";
 
-	bool INPUT_IS_OUT_OF_RANGE = ( (input != ',') && ( ( (int)(input) < 48 ) || ( (int)(input) > 57 ) ) );
+		
 
 	while ( (input = getchar() ) != '\n') {
 
@@ -166,11 +166,6 @@ int main() {
 
 		if ( input == ',') {
 
-			if ( /*INPUT_IS_OUT_OF_RANGE*/ 0 ) { // fix this line
-
-			continue;
-
-				}
 
 			
 			if ( IN_UPPERCASE_MODE && ( number % 27 == 0 ) ) {
@@ -261,13 +256,6 @@ int main() {
 		}
 
 	}
-
-
-			if ( /*INPUT_IS_OUT_OF_RANGE*/ 0 ) { // fix this line
-
-			
-
-				}
 
 			
 			if ( IN_UPPERCASE_MODE && ( number % 27 == 0 ) ) {
