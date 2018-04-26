@@ -12,24 +12,30 @@ you made.'
 
 
 #Path to program, test script file, and output files
-cd /Users/tanveersalim/Desktop/Git/EPI/EPI/Imperative/C++/luhn_checksum_validation
 
-PATH_TO_PROGRAM=/Users/tanveersalim/Desktop/Git/EPI/EPI/Imperative/C++/luhn_checksum_validation
+NAME=luhn_checksum_validation # Enter the name of program here WITHOUT .ext indicating program type
 
-PATH_TO_TESTS=~/Desktop/Tests/luhn_checksum_validation/
+PATH_TO_PROGRAM=/Users/tanveersalim/Desktop/Git/EPI/EPI/Imperative/C++/$NAME
+
+REMOVE_COMMENTS=~/Desktop/Tests/./remove_comments_from_tests
+
+cd $PATH_TO_PROGRAM
+
+PATH_TO_TESTS=~/Desktop/Tests/$NAME/
 
 : '
 
 The below echo line is meant to delete all content
 
-in luhn_checksum_validation_tests.results.
+in "$NAME"_tests.results.
 
 '
-~/Desktop/Tests/./remove_comments_from_tests.out < $PATH_TO_TESTS/luhn_checksum_validation_tests.txt >> $PATH_TO_TESTS/uncommented_luhn_checksum_validation_tests.txt
 
-touch $PATH_TO_TESTS/uncommented_luhn_checksum_validation_tests.txt
+touch $PATH_TO_TESTS/uncommented_"$NAME"_tests.txt
 
-lines=$(wc -l < $PATH_TO_TESTS/uncommented_luhn_checksum_validation_tests.txt)
+$REMOVE_COMMENTS.out < $PATH_TO_TESTS/"$NAME"_tests.txt >> $PATH_TO_TESTS/uncommented_"$NAME"_tests.txt
+
+lines=$(wc -l < $PATH_TO_TESTS/uncommented_"$NAME"_tests.txt)
 
 ((lines++))
 
@@ -46,23 +52,23 @@ the corresponding output directly beneath
 the input.
 
 '
-touch $PATH_TO_TESTS/luhn_checksum_validation_tests.results
+touch $PATH_TO_TESTS/"$NAME"_tests.results
 
 
-echo "" > $PATH_TO_TESTS/luhn_checksum_validation_tests.results
+echo "" > $PATH_TO_TESTS/"$NAME"_tests.results
 
 
-cd /Users/tanveersalim/Desktop/Git/EPI/EPI/Imperative/C++/luhn_checksum_validation
+cd /Users/tanveersalim/Desktop/Git/EPI/EPI/Imperative/C++/$NAME
 
 while [ $c -lt $lines ]
 	do
 
-		sed -n "$c"p $PATH_TO_TESTS/uncommented_luhn_checksum_validation_tests.txt >> $PATH_TO_TESTS/luhn_checksum_validation_tests.results
+		sed -n "$c"p $PATH_TO_TESTS/uncommented_"$NAME"_tests.txt >> $PATH_TO_TESTS/"$NAME"_tests.results
 
-		sed -n "$c"p $PATH_TO_TESTS/uncommented_luhn_checksum_validation_tests.txt | ./luhn_checksum_validation.out >> $PATH_TO_TESTS/luhn_checksum_validation_tests.results
+		sed -n "$c"p $PATH_TO_TESTS/uncommented_"$NAME"_tests.txt | ./$NAME.out >> $PATH_TO_TESTS/"$NAME"_tests.results
 
 	((c++))
 
 	done
 
-rm $PATH_TO_TESTS/uncommented_luhn_checksum_validation_tests.txt
+rm $PATH_TO_TESTS/uncommented_"$NAME"_tests.txt
