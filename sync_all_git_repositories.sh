@@ -3,7 +3,7 @@
 # !/bin/pwd; printf "\n"; bash
 #
 
-# Copy this file to Git_Advice for safe-keeping
+# Copy this file to EPI for safe-keeping
 
 	cp sync_all_git_repositories.sh ~/Desktop/Git/EPI/EPI
 
