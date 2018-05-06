@@ -19,7 +19,7 @@ NAME=selection_sort # Enter the name of program here WITHOUT .ext indicating pro
 
 PATH_TO_PROGRAM_DIRECTORY=/Users/tanveersalim/Desktop/Tests/"$NAME"
 
-REMOVE_COMMENTS=~/Desktop/Tests/./remove_comments_from_tests
+# REMOVE_COMMENTS=~/Desktop/Tests/./remove_comments_from_tests
 
 cd $PATH_TO_PROGRAM_DIRECTORY
 
@@ -35,13 +35,11 @@ in "$NAME"_tests.results.
 
 '
 
-touch $PATH_TO_TESTS_DIRECTORY/uncommented_"$NAME"_tests.txt
 
-$REMOVE_COMMENTS.out < $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.txt >> $PATH_TO_TESTS_DIRECTORY/uncommented_"$NAME"_tests.txt
 
-lines=$(wc -l < $PATH_TO_TESTS_DIRECTORY/uncommented_"$NAME"_tests.txt)
+lines=$(wc -l < $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.txt)
 
-((lines++))
+((lines++)) # must increment because starting c is 1
 
 c=1
 
@@ -70,12 +68,11 @@ while [ $c -lt $lines ]
 		
 		printf "\n" >> $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.results
 
-		sed -n "$c"p $PATH_TO_TESTS_DIRECTORY/uncommented_"$NAME"_tests.txt >> $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.results
+		sed -n "$c"p $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.txt >> $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.results
 
-		sed -n "$c"p $PATH_TO_TESTS_DIRECTORY/uncommented_"$NAME"_tests.txt | ./"$NAME".out >> $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.results
+		sed -n "$c"p $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.txt | ./"$NAME".out >> $PATH_TO_TESTS_DIRECTORY/"$NAME"_tests.results
 
 	((c++))
 
 	done
 
-rm $PATH_TO_TESTS_DIRECTORY/uncommented_"$NAME"_tests.txt
