@@ -35,8 +35,11 @@
 
 	cd ~/Desktop/Git/EPI/EPI/
 
+        pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
+
+# Sync K-R-Exercises
+
+	cd ~/Desktop/Git/K-R-Exercises/K-R-Exercises/
+
 	pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
 
-	 cd ~/Desktop/Git/Git_Tests/Git_Tests
-
-         pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
