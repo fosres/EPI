@@ -1,57 +1,50 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-unsigned int swap_bits(unsigned long long int *input, int i, int j) {
+unsigned long long int swap(unsigned long long int x, unsigned i, unsigned j) {
 
-  bool bitstream[64];
+	bool bit_at_i = (x >> i) & 1;
 
-  bitstream[0] = 0;
+	bool bit_at_j = (x >> j) & 1;
 
-  bool *b_p = bitstream;
+	if ( bit_at_i == bit_at_j)		{
 
-  bool bit_at_i = *input >> i;
+		return x;
 
-  bool bit_at_j = *input >> j;
+	}
 
-  if (bit_at_i == bit_at_j)       {
+	else if ( bit_at_i == 1 && bit_at_j == 0) {
 
-    return *input;
-  }
+		x &= ~(1 << i);
 
-  int c = 0;
+		x |= (1 << j);
 
-  while (*input > 0 )            {
+	}
 
-    if ( c == i || c == j)    {
+	else	/*bit_at_i == 0 && bit_at_j == 1 */ {
+		
+		x &= ~(1 << j);
 
-      *b_p++ = ~(*input & 1);
-    }
-    else                      {
-      *b_p++ = (*input & 1);
-    }
-    *input >>=1;
-    c++;
-  }
-    i = 1; int hex_to_pow =1;
+		x |= (1 << i);
 
-    unsigned long long int ans = 0;
+	}
 
-    while (bitstream[i] != NULL )   {
+	
+	return x;
+}
 
-      ans = ans + (bitstream[i] * hex_to_pow);
-      hex_to_pow <<= 4;
+int main() 						{
 
-    }
+	
+	unsigned long long int x = ~0;
+	
+	printf("%llu\n",sizeof(x));
+	
+	printf("unsigned long long int: %llu\n",swap(057,5,4));
+	
+	printf("long long octal: %llo\n",swap(057,5,4));
+	
+	
 
-    return ans;
-
-  }
-
-  int main()                {
-
-  	unsigned long long int six = 6;
-
-
-
-  }
+}
 
