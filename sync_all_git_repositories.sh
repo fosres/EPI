@@ -43,3 +43,9 @@
 
 	pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
 
+# Sync Blogs
+
+	cd ~/Desktop/Git/Blogs/
+
+	pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
+
