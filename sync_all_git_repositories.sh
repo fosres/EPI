@@ -49,3 +49,11 @@
 
 	pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
 
+# Sync Holub-Compiler
+
+	cd ~/Desktop/Git/Holub-Compiler/Holub-Compiler
+
+	pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
+
+
+
