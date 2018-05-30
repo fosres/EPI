@@ -28,7 +28,7 @@ void c_test_version() // slap the output of this method directly into the main m
       
 }
 
-void cpp_test_version()
+void cpp_test_version() // slap the output directly onto the right panel of diff tool checker
 {
     int x;
     int fr,fs;
