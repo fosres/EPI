@@ -18,7 +18,7 @@ int main()
     for (x=0; x < INT_MAX; x++, fr=(float)rand()/RAND_MAX*INT_MAX,fs=(float)rand()/RAND_MAX*INT_MAX)
     {
         
-        cout << "printf(\"%llu\\n\","<<fr<<"+"<<fs<<")"<<endl;
+        cout << "printf(\"%llu\\n\","<<fr<<"+"<<fs<<");"<<endl;
         printf("\n");
         
         
