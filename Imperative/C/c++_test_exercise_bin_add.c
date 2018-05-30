@@ -10,7 +10,7 @@
 using std::cout;
 using std::endl;
 
-int main()
+void cpp_test_version()
 {
     int x;
     int fr,fs;
@@ -25,4 +25,11 @@ int main()
         
         
     }
+    
+    
+}
+
+int main()
+{
+    cpp_test_version();
 }
