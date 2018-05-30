@@ -10,6 +10,28 @@
 using std::cout;
 using std::endl;
 
+void c_test_version()
+{
+    
+    int x;
+    int fr,fs;
+    
+    srand((unsigned)time(NULL));
+    
+    for (x=0; x < INT_MAX; x++, fr=(float)rand()/RAND_MAX*INT_MAX,fs=(float)rand()/RAND_MAX*INT_MAX)
+    {
+        
+        cout << "printf(\"%llu\\n\","<<"add("<<fr<<","<<fs<<")"<<");"<<endl;
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+}
 void cpp_test_version()
 {
     int x;
@@ -30,5 +52,5 @@ void cpp_test_version()
 
 int main()
 {
-    cpp_test_version();
+    c_test_version();
 }
