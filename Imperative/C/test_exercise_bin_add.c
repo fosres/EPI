@@ -10,7 +10,7 @@
 using std::cout;
 using std::endl;
 
-void c_test_version()
+void c_test_version() // slap the output of this method directly into the main method of your bin_add C source code file
 {
     
     int x;
