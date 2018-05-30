@@ -21,7 +21,6 @@ void cpp_test_version()
     {
         
         cout << "printf(\"%llu\\n\","<<fr<<"+"<<fs<<");"<<endl;
-        printf("\n");
         
         
     }
