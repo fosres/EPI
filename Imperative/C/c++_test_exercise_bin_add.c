@@ -25,13 +25,9 @@ void c_test_version()
         
         
     }
-    
-    
-    
-    
-    
-    
+      
 }
+
 void cpp_test_version()
 {
     int x;
