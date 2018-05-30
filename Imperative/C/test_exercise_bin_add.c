@@ -1,5 +1,7 @@
 //clang 3.8.0
 
+//C++ test file version
+
 #include <iostream>
 #include <stdio.h>
 #include <limits.h>
