@@ -5,6 +5,8 @@ char * reverseDigits(int x)
 {
   char * ans;
 
+  char * a = ans;
+
   char * s;
 
   char * r;
@@ -30,7 +32,7 @@ char * reverseDigits(int x)
     }
   }
 
-  return ans;
+  return a;
 
 }
 
