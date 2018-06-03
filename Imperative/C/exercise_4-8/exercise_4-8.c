@@ -1,45 +1,42 @@
+// exercise_4-8-2.cpp
+
 #include <stdio.h>
-#include <string.h>
 
-char * reverseDigits(int x)
+int reverseDigits(int x)
 {
-  char * ans;
 
-  char * a = ans;
+	int num = x;
 
-  char * s;
+	int ans = 0;
 
-  char * r;
+	if ( x < 0)
+		num *= -1;
 
-  sprintf(s,"%s",x);
-  
-  *r = *(s + strlen(s) - 1);
+	while ( num > 0)
+	{
 
-  if (x>=0)
-  {
-    while (r>=s)
-      *ans++=*r--;
-  }
+		ans = ans*10 + num%10;
 
-  else // x < 0
-  {
-    *ans = *(s+0);
-    ans++;
+		num /= 10;
 
-    while(r>s)
-    {
-      *ans++ = *r--;
-    }
-  }
+	}
 
-  return a;
+	if ( x < 0)
+		ans *= -1;
+
+	return ans;
+
+}
+
+int main()
+{
+
+	printf("%d\n",reverseDigits(0));
+	printf("%d\n",reverseDigits(-312));
+	printf("%d\n",reverseDigits(12345));
+	
 
 }
 
 
 
-
-int main () {
-   printf("%s\n",reverseDigits(-312));;
-
-}
