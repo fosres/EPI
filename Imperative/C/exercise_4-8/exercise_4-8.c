@@ -2,12 +2,12 @@
 
 #include <stdio.h>
 
-int reverseDigits(int x)
+long int reverseDigits(long int x)
 {
 
-	int num = x;
+	long int num = x;
 
-	int ans = 0;
+	long int ans = 0;
 
 	if ( x < 0)
 		num *= -1;
@@ -31,10 +31,7 @@ int reverseDigits(int x)
 int main()
 {
 
-	printf("%d\n",reverseDigits(0));
-	printf("%d\n",reverseDigits(-312));
-	printf("%d\n",reverseDigits(12345));
-	
+
 
 }
 
