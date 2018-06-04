@@ -1,0 +1,27 @@
+Strings
+
+We say a phrase is an anagram of another if the letters can be reorganized from one into
+another while ignoring spaces. The case of letters are ignored, i.e., whether a letter is capital or lowercase
+does not matter. The following figure shows an anagram presented in Harry Potter and the Chamber of
+Secrets:
+
+"Tom Marvolo Riddle" --> "I Am Lord Voldemort"
+
+Write the function isAnagram that checks whether two strings are anagrams of each other. Assume the
+input strings s1 and s2 only contain letters and spaces. Also assume s1 and s2 are not empty (so their
+lengths are at least 1).
+Hint. To reiterate, spaces should be ignored.
+Hint. To reiterate, whether a letter is capital or lowercase does not matter. So ’A’ and ’a’ should be
+treated the same.
+Hint. Two strings are anagrams of each other if each letter occurs the same number of times. For
+example, in both "Dormitory" and "Dirty Room"
+• ’d’ occurs 1 time
+• ’i’ occurs 1 time
+• ’m’ occurs 1 time
+• ’o’ occurs 2 times
+• ’r’ occurs 2 times
+• ’t’ occurs 1 time
+• ’y’ occurs 1 time
+• All other letters occur 0 times
+
+
