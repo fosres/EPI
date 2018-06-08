@@ -34,5 +34,15 @@ bool isPalindrome(int x)
 int main()
 {
 
+  for (int i  = 0; i < 10000; i++)
+ {
+    printf("%d\n",isPalindrome(i));
+ }
+
+  for (int i  = 0; i < -10000; i--)
+  {
+    printf("%d\n",isPalindrome(i));
+  }
+
 
 }
