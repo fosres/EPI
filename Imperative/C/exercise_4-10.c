@@ -1,28 +1,26 @@
 //exercise_4-10.c
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-double random_frac()
+int random_int(int a, int b) // returns random int in range [a,b]
 {
 	
   double ans;
-  ans = (double)rand()/(double)RAND_MAX;
-  return ans;
+  double random_frac = (rand()/(double)RAND_MAX); //both rand() and RAND_MAX are ints. So (double)RAND_MAX
+  ans = a+random_frac*(b-a)+0.5;
+  return (int)ans;
 }
 
 int main()
 {
    
-  int a = 0;
-  int b = 1;
+  int a = 1;
+  int b = 100;
   double num;
   for (int i = 0; i < 10000; i++)
   {
-    num = a+random_frac()*(b-a)+0.5;
   
-    printf("%d\n",(int)num);
+    printf("%d\n",random_int(a,b));
   }
 
-  printf("%d\n",RAND_MAX);
 }
