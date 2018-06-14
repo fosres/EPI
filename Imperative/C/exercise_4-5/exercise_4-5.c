@@ -1,10 +1,11 @@
 #include <iostream>
+#include <stdlib.h>
 using std::cout;
 using std::endl;
 
-unsigned bit_add(unsigned a, unsigned b)
+int bit_sum(int a, int b)
 {
-  unsigned c;
+  int c;
 
   while (a!=0)
   {
@@ -16,16 +17,34 @@ unsigned bit_add(unsigned a, unsigned b)
   return b;
 }
 
-unsigned bit_multiply(unsigned a, unsigned b)
+int bit_multiply(int a, int b)
 {
-  unsigned sum = 0;
+  int sum = 0;
+  int sign;
+  if ((a<0)^(b<0))
+  {
+    sign = -1;
+  }
+  else //either both a and b pos or neg
+  {
+    sign = 1;
+  }
+  
+  a = abs(a);
+  b = abs(b);
+
   while (b != 0)
   {
     if ( b&1 == 1)
-      sum = bit_add(sum,a);
+      sum = bit_sum(sum,a);
     a <<= 1;
     b >>= 1;
   }
+  if (sign == -1)
+  {
+    return -sum;
+  }
+
   return sum;
 }
 
@@ -33,3 +52,5 @@ int main() {
   cout << bit_multiply(5,6) << endl;
   
 }
+
+
