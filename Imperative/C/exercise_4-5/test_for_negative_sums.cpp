@@ -10,11 +10,12 @@ int main() {
   {
     int a = (int)(random()/(double)RAND_MAX*100+0.5);
     int b = (int)(random()/(double)RAND_MAX*100+0.5);
-    int sign_a = (int)(random()/(double)RAND_MAX*-1-0.5);
-    int sign_b = -(int)(random()/(double)RAND_MAX*-1-0.5);
+    int sign_a = -1+(int)(random()/(double)RAND_MAX*(2)+0.5);
+    int sign_b = -1+(int)(random()/(double)RAND_MAX*(2)+0.5);
 
-  cout << "printf(\"%d\\n\",bit_sum(" << sign_a*a << "," << sign_b*b << "));" << endl;
+  cout << "printf(\"%d\\n\",bit_multiply(" << sign_a*a << "," << sign_b*b << "));" << endl;
   
   
   }
 }
+
