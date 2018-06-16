@@ -48,6 +48,29 @@ int bit_multiply(int a, int b)
   return sum;
 }
 
+int bin_div(int a, int b)
+{
+
+	int sign; int c = 0;
+
+	if ((a<0)^(b<0))
+	{ sign = -1;}
+	
+	else
+	{ sign = 1;}
+
+	a = abs(a); b = abs(b);
+
+	while ( a >= b)
+	{
+		c++;
+		a = bin_add(a,-b);
+	}
+
+	return (sign*c);
+
+}
+
 int main() {
   cout << bit_multiply(5,6) << endl;
   
