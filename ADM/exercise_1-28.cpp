@@ -48,7 +48,7 @@ int bit_multiply(int a, int b)
   return sum;
 }
 
-int bin_div(int a, int b)
+int bit_div(int a, int b)
 {
 
 	int sign; int c = 0;
@@ -64,7 +64,7 @@ int bin_div(int a, int b)
 	while ( a >= b)
 	{
 		c++;
-		a = bin_add(a,-b);
+		a = bin_sum(a,-b);
 	}
 
 	return (sign*c);
