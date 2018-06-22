@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-const char * find_char(char const * source, char const * chars)
+char * find_char(char const * source, char const * chars)
 {
   char key; 
 
   while ((key = *chars) != '\0')
   {
-    const char * source_p = source;
+    char * source_p = (char*)source;
 
     while (*source_p != '\0' )
     {
@@ -22,7 +22,7 @@ const char * find_char(char const * source, char const * chars)
 int main() 
 {
   static char a[1000] = "ABCDEF";
-  static char keys[1000] = "EF";
+  static char keys[1000] = "F";
   printf("%s\n",find_char(a,keys));
 }
 
