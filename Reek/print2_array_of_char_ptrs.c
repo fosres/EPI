@@ -54,7 +54,7 @@ int main()
 	*++arr = NULL;
 	
 
-	
+	printf("%d\n",strlen(arr_p))	
 	int * pos = search_for_char(arr_p,'a');
 	
 	for ( int i = 0; i < strlen(arr_p); i++)
