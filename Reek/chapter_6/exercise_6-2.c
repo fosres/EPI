@@ -54,8 +54,8 @@ int del_substr(char *str, char const *substr)
 
 int main()
 {
-  char a[1000] = "Thare";
-  char b[1000] = "har";
+  char a[1000] = "Sacha Baren Cohen";
+  char b[1000] = " Cohen";
 
   printf("%s\n",mystrstr(a,b));
   
