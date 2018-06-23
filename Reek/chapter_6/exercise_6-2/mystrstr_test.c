@@ -78,11 +78,8 @@ int main(void) {
 	*str++ = "That"; 
 	*str = "at";
 
-	char *source = *str_zero;
 
-	char *target = *str;
-
-	del_substr(source,target);	
+	del_substr(*str_zero,*str);	
 
 	return 0;
 }

@@ -35,7 +35,7 @@ char * mystrstr(char const *source, char const *target)
 
 }
 
-int del_substr(char *str, char const *substr)
+int del_substr(char *str, char *substr)
 {
 	
 	if (mystrstr(str,substr)==NULL)
@@ -54,11 +54,11 @@ int del_substr(char *str, char const *substr)
 
 }
 
-//#if 0
+#if 0
 int main(void)
 {
   char a[1000] = "Slapstick Comedy";
-  char b[1000] = "stick";
+  char b[1000] = "S";
 
   printf("%s\n",mystrstr(a,b));
   
@@ -68,6 +68,6 @@ int main(void)
   del_substr(a,b);
   printf("%s\n",a);
 }
-//#endif
+#endif
 
 #endif // __STDIO_H__
