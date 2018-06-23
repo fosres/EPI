@@ -1,3 +1,5 @@
+#ifndef __STDIO_H__
+#define __STDIO_H__
 #include <stdio.h>
 
 int mystrlen(char const * s)
@@ -52,10 +54,11 @@ int del_substr(char *str, char const *substr)
 
 }
 
-int main()
+//#if 0
+int main(void)
 {
-  char a[1000] = "Sacha Baren Cohen";
-  char b[1000] = " Cohen";
+  char a[1000] = "Slapstick Comedy";
+  char b[1000] = "stick";
 
   printf("%s\n",mystrstr(a,b));
   
@@ -65,3 +68,6 @@ int main()
   del_substr(a,b);
   printf("%s\n",a);
 }
+//#endif
+
+#endif // __STDIO_H__
