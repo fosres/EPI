@@ -19,7 +19,7 @@ void reverse (char *s)
 	}
 }
 
-char * ltoa(long long int n)
+char * lltoa(long long int n)
 {
   	static char s[MAX_LENGTH];
 
@@ -50,7 +50,7 @@ char * ftoa(const double input)
 
   f_to_i = (long long int)in; 
   
-  strcat(a,ltoa(f_to_i)); strcat(a,".");
+  strcat(a,lltoa(f_to_i)); strcat(a,".");
 
   double * integral;
 
@@ -60,7 +60,7 @@ char * ftoa(const double input)
 
   while ( i < 6 ) 	/* by default %f in printf is six decimal digits precise  */
   {
-	strcat(a,ltoa(((long long int)(fraction/divisor))%10));
+	strcat(a,lltoa(((long long int)(fraction/divisor))%10));
 
 	divisor /= 10; i++;
   }
@@ -79,18 +79,18 @@ int myprintf(char const * s)
 int main(void) 
 {
 
-	printf("%s\n",ltoa(-23));
-	printf("%s\n",ltoa(LLONG_MAX));
-	printf("%s\n",ltoa(12345678901234));
-	printf("%s\n",ltoa(-1));
-	printf("%s\n",ltoa(LLONG_MIN)); //FAILS: prints "-("
-	printf("%s\n",ltoa(-LLONG_MAX));
-	printf("%s\n",ltoa(-123456789));
-	printf("%s\n",ltoa(INT_MIN));
-	printf("%s\n",ltoa(LONG_MIN)); //FAILS
-	printf("%s\n",ltoa(-LONG_MAX));
-	printf("%s\n",ltoa(LONG_MAX));
-	printf("%s\n",ltoa(-33238280));
+	printf("%s\n",lltoa(-23));
+	printf("%s\n",lltoa(LLONG_MAX));
+	printf("%s\n",lltoa(12345678901234));
+	printf("%s\n",lltoa(-1));
+	printf("%s\n",lltoa(LLONG_MIN)); //FAILS: prints "-("
+	printf("%s\n",lltoa(-LLONG_MAX));
+	printf("%s\n",lltoa(-123456789));
+	printf("%s\n",lltoa(INT_MIN));
+	printf("%s\n",lltoa(LONG_MIN)); //FAILS
+	printf("%s\n",lltoa(-LONG_MAX));
+	printf("%s\n",lltoa(LONG_MAX));
+	printf("%s\n",lltoa(-33238280));
 
 
 }
