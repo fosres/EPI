@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <limits.h>
+#include <float.h>
+#include <iostream>
+
+
+long long int random_lld()
+{
+  srand(time(NULL));
+
+  return (LLONG_MIN+rand()/(double)RAND_MAX*(LLONG_MAX-LLONG_MIN)+0.5); /* random number range: [LLONG_MIN,LLONG_MAX]
+
+
+}
+int main(void) {
+  
+  cout << 
+  
+}
