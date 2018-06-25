@@ -76,6 +76,7 @@ int myprintf(char const * s)
   return 1;
 }
 
+#if 0
 int main(void) 
 {
 
@@ -94,4 +95,4 @@ int main(void)
 
 
 }
-
+#endif
