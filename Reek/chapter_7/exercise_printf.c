@@ -50,17 +50,17 @@ double nround(double input, double power)
 
 	double up = input * marge;
 
-	double result = llround(up)/marge;
-
+	double result = ((double)(llround(up)))/marge;
+// replace '/' with a better division function
 	return result;
 
 }
 
 
-char * ftoa(const double input, const unsigned int power) // pow is the '*' in "%.*f"
+char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 {
   
-  double in = nround(input,power); 
+  const double in = nround(input,power); 
 
   static char a[MAX_LENGTH];
 
@@ -76,7 +76,7 @@ char * ftoa(const double input, const unsigned int power) // pow is the '*' in "
 
   while ( i < power ) 	/* by default %f in printf is six decimal digits precise  */
   {
-	strcat(a,lltoa(((long long int)(fraction/divisor))%10));
+	strcat(a,lltoa((long long int)(fraction/divisor)%10));
 
 	divisor /= 10; i++;
   }
@@ -96,8 +96,8 @@ int myprintf(char const * s)
 int main(void) 
 {
 
-	printf("%f\n",nround(3.123456,4));
-	printf("%s\n",ftoa(3.123456,4)); //TEST FAILED!!!
+	printf("%f\n",nround(3.15,1));
+	printf("%s\n",ftoa(3.15,2)); //TEST FAILED!!!
 
 }
 //#endif
