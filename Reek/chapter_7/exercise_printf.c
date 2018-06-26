@@ -70,7 +70,7 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
   static double integral[1000];
 
-  const double fraction = modf(in,integral); /* stores fractional part of input */
+  const double fraction = modf(input,integral); /* stores fractional part of input */
   
   static int i; double divisor = 0.1;
 
@@ -96,8 +96,8 @@ int myprintf(char const * s)
 int main(void) 
 {
 
-	printf("%f\n",nround(3.15,1));
-	printf("%s\n",ftoa(3.15,2)); //TEST FAILED!!!
+	printf("%f\n",nround(3.15,6));
+	printf("%s\n",ftoa(3.15,6)); //TEST FAILED!!!
 
 }
 //#endif
