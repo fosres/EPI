@@ -74,7 +74,7 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
 #if 0
 
-	Convert mantissa stored in fraction into a long long int by first multiplying fraction by pow(10,power) and then applying strcat(a,lltoa(fraction*pow(10,power)));
+	Convert mantissa stored in fraction into a long long int by first multiplying fraction by pow(10,power) and then applying strcat(a,lltoa((long long int)(fraction*pow(10,power))));
 
 	No need for while ( i < power ) loop any longer
 
