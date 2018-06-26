@@ -70,15 +70,23 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
   static double integral[1000];
 
-  const double fraction = modf(input,integral); /* stores fractional part of input */
+  double fraction = modf(input,integral); /* stores fractional part of input */
+
+#if 0
+
+	Convert mantissa stored in fraction into a long long int by first multiplying fraction by pow(10,power) and then applying strcat(a,lltoa(fraction*pow(10,power)));
+
+	No need for while ( i < power ) loop any longer
+
+#endif
   
   static int i; double divisor = 0.1;
 
   while ( i < power ) 	/* by default %f in printf is six decimal digits precise  */
   {
-	strcat(a,lltoa((long long int)(fraction/divisor)%10));
+	strcat(a,lltoa(((long long int)(fraction *= 10))%10));
 
-	divisor /= 10; i++;
+	/*divisor /= 10;*/ i++;
   }
 
   return a;
@@ -95,6 +103,7 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-	printf("%s\n",ftoa(9.15,3));
+	printf("%s\n",ftoa(9.1,6));
+	printf("%f\n",nround(9.1,6));
 }
 //#endif
