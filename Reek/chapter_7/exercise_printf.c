@@ -42,15 +42,18 @@ char * lltoa(long long int n)
 	return s;
 }
 
-char * ftoa(const double input, const int power) // pow is the '*' in "%.*f"
+char * ftoa(const double input, const unsigned int power) // pow is the '*' in "%.*f"
 {
-  double in = round(input * pow(10,power))/pow(10,power) ; long long int f_to_i; 
   
-  /* using -power-3 instead -power-1 due to floating point inaccuracy */
+  double marge = pow(10,power);
+  
+  double up = input * marge;
+  
+  double in = llround(up)/marge; 
 
   static char a[MAX_LENGTH];
 
-  f_to_i = (long long int)(in); 
+  long long int f_to_i = (long long int)(in); 
   
   strcat(a,lltoa(f_to_i)); strcat(a,".");
 
@@ -97,7 +100,7 @@ int main(void)
 	printf("%s\n",lltoa(-33238280));
 #endif
 
-	printf("%s\n",ftoa(3.99,1));
+	printf("%s\n",ftoa(3.123456,4));
 
 }
 //#endif
