@@ -70,7 +70,7 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
   static double integral[1000];
 
-  double fraction = modf(input,integral); /* stores fractional part of input */
+  double fraction = modf(in,integral); /* stores fractional part of input */
 
 #if 0
 
@@ -79,6 +79,11 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 	No need for while ( i < power ) loop any longer
 
 #endif
+
+
+  strcat(a,lltoa(llround(fraction*pow(10,power))));
+
+#if 0
   
   static int i; double divisor = 0.1;
 
@@ -88,6 +93,9 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
 	/*divisor /= 10;*/ i++;
   }
+
+#endif
+
 
   return a;
 }
@@ -103,7 +111,6 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-	printf("%s\n",ftoa(9.1,6));
-	printf("%f\n",nround(9.1,6));
+	printf("%s\n",ftoa(3.15,0));
 }
 //#endif
