@@ -95,9 +95,6 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-
-	printf("%f\n",nround(3.15,6));
-	printf("%s\n",ftoa(3.15,6)); //TEST FAILED!!!
-
+	printf("%s\n",ftoa(9.15,3));
 }
 //#endif
