@@ -42,23 +42,25 @@ char * lltoa(long long int n)
 	return s;
 }
 
-char * ftoa(const double input)
+char * ftoa(const double input, const int power) // pow is the '*' in "%.*f"
 {
-  double in = input; long long int f_to_i;
+  double in = round(input * pow(10,power))/pow(10,power) ; long long int f_to_i; 
+  
+  /* using -power-3 instead -power-1 due to floating point inaccuracy */
 
   static char a[MAX_LENGTH];
 
-  f_to_i = (long long int)in; 
+  f_to_i = (long long int)(in); 
   
   strcat(a,lltoa(f_to_i)); strcat(a,".");
 
-  double * integral;
+  static double integral[1000];
 
-  const double fraction = modf(input,integral); /* stores fractional part of input */
+  const double fraction = modf(in,integral); /* stores fractional part of input */
   
   static int i; double divisor = 0.1;
 
-  while ( i < 6 ) 	/* by default %f in printf is six decimal digits precise  */
+  while ( i < power ) 	/* by default %f in printf is six decimal digits precise  */
   {
 	strcat(a,lltoa(((long long int)(fraction/divisor))%10));
 
@@ -76,10 +78,11 @@ int myprintf(char const * s)
   return 1;
 }
 
-#if 0
+//#if 0
 int main(void) 
 {
 
+#if 0	
 	printf("%s\n",lltoa(-23));
 	printf("%s\n",lltoa(LLONG_MAX));
 	printf("%s\n",lltoa(12345678901234));
@@ -92,7 +95,9 @@ int main(void)
 	printf("%s\n",lltoa(-LONG_MAX));
 	printf("%s\n",lltoa(LONG_MAX));
 	printf("%s\n",lltoa(-33238280));
+#endif
 
+	printf("%s\n",ftoa(3.99,1));
 
 }
-#endif
+//#endif
