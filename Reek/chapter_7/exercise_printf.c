@@ -19,6 +19,7 @@ void reverse (char *s)
 	}
 }
 
+
 char * lltoa(long long int n)
 {
   	static char s[MAX_LENGTH];
@@ -42,14 +43,24 @@ char * lltoa(long long int n)
 	return s;
 }
 
+double nround(double input, double power)
+{
+	
+	double marge = pow(10,power);
+
+	double up = input * marge;
+
+	double result = llround(up)/marge;
+
+	return result;
+
+}
+
+
 char * ftoa(const double input, const unsigned int power) // pow is the '*' in "%.*f"
 {
   
-  double marge = pow(10,power);
-  
-  double up = input * marge;
-  
-  double in = llround(up)/marge; 
+  double in = nround(input,power); 
 
   static char a[MAX_LENGTH];
 
@@ -85,22 +96,8 @@ int myprintf(char const * s)
 int main(void) 
 {
 
-#if 0	
-	printf("%s\n",lltoa(-23));
-	printf("%s\n",lltoa(LLONG_MAX));
-	printf("%s\n",lltoa(12345678901234));
-	printf("%s\n",lltoa(-1));
-	printf("%s\n",lltoa(LLONG_MIN)); //FAILS: prints "-("
-	printf("%s\n",lltoa(-LLONG_MAX));
-	printf("%s\n",lltoa(-123456789));
-	printf("%s\n",lltoa(INT_MIN));
-	printf("%s\n",lltoa(LONG_MIN)); //FAILS
-	printf("%s\n",lltoa(-LONG_MAX));
-	printf("%s\n",lltoa(LONG_MAX));
-	printf("%s\n",lltoa(-33238280));
-#endif
-
-	printf("%s\n",ftoa(3.123456,4));
+	printf("%f\n",nround(3.123456,4));
+	printf("%s\n",ftoa(3.123456,4)); //TEST FAILED!!!
 
 }
 //#endif
