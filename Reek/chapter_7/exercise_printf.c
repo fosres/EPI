@@ -72,7 +72,19 @@ char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
 
   double fraction = modf(in,integral); /* stores fractional part of input */
 
-  strcat(a,lltoa(llround(fraction*pow(10,power))));
+  static char non_zero_mantissa[1000];
+
+  strcat(non_zero_mantissa,lltoa(llround(fraction*pow(10,power))));
+
+
+  int i = strlen(non_zero_mantissa);
+
+  while ( i++ < power )
+  {
+	strcat(a,"0");
+  }
+
+  strcat(a,non_zero_mantissa);
 
   return a;
 }
@@ -88,7 +100,7 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-	printf("%s\n",ftoa(4.901,4));
+	printf("%s\n",ftoa(4.00005,4));
 //	printf("%s\n",ftoa(3.5,0));
 }
 //#endif
