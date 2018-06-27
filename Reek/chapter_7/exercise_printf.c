@@ -72,7 +72,7 @@ static void ftoa(const double input, double power) // pow is the '*' in "%.*f"
 
   double fraction = modf(in,integral); /* stores fractional part of input */
 
-  static char non_zero_mantissa[1000];
+  static char non_zero_mantissa[1000]; /* stores non-zero digits in mantissa after leading zeros following decimal point */
 
   strcat(non_zero_mantissa,lltoa(llround(fraction*pow(10,power))));
 
@@ -110,7 +110,7 @@ int main(void)
 	ftoa(3.000005,5);
 	putchar('\n');
 #endif
-	ftoa(3.6667,2);
+	ftoa(3.6666666666666666,15);
 
 }
 //#endif
