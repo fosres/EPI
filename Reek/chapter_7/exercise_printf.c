@@ -167,7 +167,7 @@ void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 	while ( a[c] != '\0') putchar(a[c++]);
 }
 
-#if 0
+//#if 0
 int myprintf(char const * s,...)
 {
 
@@ -188,8 +188,8 @@ int myprintf(char const * s,...)
 				case 'f':
 					ftoa(va_arg(var_arg,double),6);
 					break;
-				case 'd':
-					ftoa(va_arg(var_arg,double),6);
+				case 'd':	
+					char const * d = lltoa(va_arg(var_arg,double));
 					break;
 				case 's':
 
@@ -208,7 +208,7 @@ int myprintf(char const * s,...)
   return 1;
 }
 
-#endif
+//#endif
 
 //#if 0
 int main(void) 
@@ -253,7 +253,6 @@ int main(void)
 	putchar('\n');
 //#endif
 
-	printf("%s\n",lltoa(-233454323));
 
 }
 //#endif
