@@ -10,6 +10,7 @@ using std::endl;
 #include "printf.h"
 
 #define NUM_TESTS 10000
+#define FLOAT_MAX 9.9999999999999999e15
 
 void generate_random_lltoa_tests()
 {
@@ -58,11 +59,11 @@ void generate_random_ftoa_tests()
 
    int sign_index = (0+rand()/(double)RAND_MAX*(1-0)+0.5);
 
-  random_f = signs[sign_index]*(0+rand()/(double)RAND_MAX*(LLONG_MAX)+0.5);
+  random_f = signs[sign_index]*(0+rand()/(double)RAND_MAX*(FLOAT_MAX)+0.5);
 
-  int rand_power = (int)(0+rand()/(double)RAND_MAX*(15-0)+0.5);
+//  int rand_power = (int)(0+rand()/(double)RAND_MAX*(15-0)+0.5);
  
-  cout << "putchar('\\n');\nftoa(" << random_f << "," << rand_power << ");" << endl;
+  cout << "putchar('\\n');\nftoa(" << random_f << "," << 0 << ");" << endl;
   
   i++;
   }
