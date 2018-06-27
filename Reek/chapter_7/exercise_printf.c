@@ -57,12 +57,12 @@ double nround(double input, double power)
 }
 
 
-char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
+static char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
 
-  static char a[MAX_LENGTH];
+  static char a[MAX_LENGTH] = "\0";
 
   long long int f_to_i = (long long int)(in); 
   
@@ -79,9 +79,11 @@ char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
 
   int i = strlen(non_zero_mantissa);
 
-  while ( i++ < power )
+  while ( i < power )
   {
 	strcat(a,"0");
+
+	i++;
   }
 
   strcat(a,non_zero_mantissa);
@@ -100,7 +102,9 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-	printf("%s\n",ftoa(4.00005,4));
+	//printf("%s\n",ftoa(4.00005,4));
+	printf("%s\n",ftoa(3.00005,4));
+
 //	printf("%s\n",ftoa(3.5,0));
 }
 //#endif
