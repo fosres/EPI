@@ -121,6 +121,9 @@ int main(void)
 	ftoa(3.0000000000000009,15);
 	putchar('\n');
 	ftoa(3.0000000000000099,15);
+	putchar('\n');
+	ftoa(1.9999999e5,1);
+
 
 }
 //#endif
