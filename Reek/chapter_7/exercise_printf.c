@@ -51,7 +51,7 @@ double nround(double input, double power)
 	double up = input * marge;
 
 	double result = ((double)(llround(up)))/marge;
-// replace '/' with a better division function
+
 	return result;
 
 }
