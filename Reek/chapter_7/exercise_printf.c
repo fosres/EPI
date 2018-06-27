@@ -57,7 +57,7 @@ double nround(double input, double power)
 }
 
 
-static char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
+static void ftoa(const double input, double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
@@ -79,16 +79,20 @@ static char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
 
   int i = strlen(non_zero_mantissa);
 
-  while ( i < power )
+  while ( i++ < power )
   {
 	strcat(a,"0");
 
-	i++;
   }
 
   strcat(a,non_zero_mantissa);
 
-  return a;
+  static char * a_p = a;
+
+  while (*a_p != '\0')
+  {
+	putchar(*a_p++);
+  }
 }
 
 
@@ -102,9 +106,11 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-	//printf("%s\n",ftoa(4.00005,4));
-	printf("%s\n",ftoa(3.00005,4));
+#if 0
+	ftoa(3.000005,5);
+	putchar('\n');
+#endif
+	ftoa(3.6667,2);
 
-//	printf("%s\n",ftoa(3.5,0));
 }
 //#endif
