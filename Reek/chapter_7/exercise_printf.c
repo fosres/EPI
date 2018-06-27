@@ -7,8 +7,7 @@
 
 #define MAX_LENGTH 1000
 
-void reverse (char *s)
-{
+void reverse (char *s) {
 	char temp;	
 	
 	for ( int i = 0, j = strlen(s)-1; i < j; i++, j--)
@@ -19,20 +18,32 @@ void reverse (char *s)
 	}
 }
 
-void printd(long long int n)
+
+char * printd(long long int n)
 {
+  
+  static char d[1000];
+  static char abs[1000];
+  static char * abs_p = abs;
   static int sign;
   if ( n < 0 )
   {
-    putchar('-');
+    *d = ('-');
     n = -n;
   }
 
-  if ( lldiv(n,10).quot != 0)
-    printd(lldiv(n,10).quot);
-  
-  putchar(lldiv(n,10).rem+'0');
+  while ( lldiv(n,10).quot != 0)
+  {
+    *abs_p++ = (lldiv(n,10).rem+'0');
 
+    n = (lldiv(n,10).quot);
+
+  }
+
+  reverse(abs);
+  strcat(d,abs);
+
+  return d;
 }
 
 char * lltoa(long long int n)
@@ -58,6 +69,35 @@ char * lltoa(long long int n)
 	return s;
 }
 
+char * lltoa2(long long int n)
+{
+  
+  static char d[MAX_LENGTH];
+  static char abs[MAX_LENGTH];
+  static char * abs_p = abs;
+  static int sign;
+  if ( n < 0 )
+  {
+    *d = ('-');
+    n = -n;
+  }
+
+  while (lldiv(n,10).quot != 0)
+  {
+    *abs_p++ = (lldiv(n,10).rem+'0');
+
+    n = (lldiv(n,10).quot);
+
+  } 
+
+    *abs_p++ = (lldiv(n,10).rem+'0'); /* first digit after pos or neg sign must be included */
+
+  reverse(abs); /* contents of abs are originally in reverse order of input */
+  strcat(d,abs);
+
+  return &d[0];
+}
+
 double nround(double input, double power)
 {
 	
@@ -71,24 +111,30 @@ double nround(double input, double power)
 
 }
 
-// ftoa rounds accurately up to 18 digits
+// ftoa rounds accurately up to 15 digits, guranteed
 
 // ftoa can only deal with integral values with an absolute value less than or equal to LLONG_MAX
 
-void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
+char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
 
-  char a[MAX_LENGTH] = "\0";
+  static char a[MAX_LENGTH] = "\0";
+
+  int j = 0;
+
+  while (j < strlen(a) ) a[j++] = '\0';
 
   long long int f_to_i = (long long int)(in); 
   
   strcat(a,lltoa(f_to_i)); strcat(a,".");
 
-  double integral[1000] = {0};
+  double integral = 0;
 
-  double fraction = modf(in,integral); /* stores fractional part of input */
+  double fraction = 0;
+
+ (in >= 0) ? (fraction = modf(in,&integral)): (fraction = modf(-in,&integral)); /* stores fractional part of input */
 
   char non_zero_mantissa[1000] = "\0"; /* stores non-zero digits in mantissa after leading zeros following decimal point */
 
@@ -105,13 +151,7 @@ void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
   strcat(a,non_zero_mantissa);
 
-  char * a_p = a;
-
-  while (*a_p != '\0')
-  {
-	putchar(*a_p++);
-  }
-
+	return a;
 }
 
 
@@ -148,9 +188,14 @@ int main(void)
 	putchar('\n');
 	ftoa(3.9999,3);
 #endif
-
-
-	ftoa(8.9999999999999999,18);
+	printf("%s\n",ftoa(3.9999,3));
+	printf("%s\n",ftoa(1.5555,2));
+	printf("%s\n",ftoa(3.39823929,5));
+	printf("%s\n",ftoa(3.0000000000000099,15));
+	printf("%s\n",ftoa(3.6666666666666666,15));
+	printf("%s\n",ftoa(3.4545,3));
+	printf("%s\n",ftoa(3.454599,5));
+	printf("%s\n",ftoa(-1.0000000000000009,15));
 
 }
 //#endif
