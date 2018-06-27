@@ -57,7 +57,7 @@ double nround(double input, double power)
 }
 
 // ftoa rounds accurately up to 15 digits
-void ftoa(const double input, double power) // pow is the '*' in "%.*f"
+void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
@@ -93,6 +93,7 @@ void ftoa(const double input, double power) // pow is the '*' in "%.*f"
   {
 	putchar(*a_p++);
   }
+
 }
 
 
@@ -125,6 +126,13 @@ int main(void)
 	ftoa(1.9999999e5,1);
 	putchar('\n');
 	ftoa(2.99e1,0);
+	putchar('\n');
+	printf("%.*f\n",3,3.9999); //making sure I can format this right for test file
+	ftoa(3.9999,3);
+	putchar('\n');
+	ftoa(3.9999,3);
+
+	
 
 
 }
