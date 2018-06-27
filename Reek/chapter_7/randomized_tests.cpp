@@ -37,6 +37,8 @@ void generate_random_lltoa_tests()
   i++;
   }
 
+}
+
 void generate_random_ftoa_tests()
 {
 
@@ -60,7 +62,7 @@ void generate_random_ftoa_tests()
 
   int rand_power = (int)(0+rand()/(double)RAND_MAX*(15-0)+0.5);
  
-  cout << "printf(\"%s\\n\",ftoa(" << random_f << "," << "));" << endl;
+  cout << "printf(\"%s\\nputchar('\\n');\\n\",ftoa(" << random_f << "," << rand_power << "));" << endl;
   
   i++;
   }
@@ -69,7 +71,8 @@ void generate_random_ftoa_tests()
 
 int main(void) 
 {
-
+	
+	generate_random_ftoa_tests();
 
 }
 
