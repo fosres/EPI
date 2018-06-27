@@ -58,11 +58,11 @@ void generate_random_ftoa_tests()
 
    int sign_index = (0+rand()/(double)RAND_MAX*(1-0)+0.5);
 
-  random_f = signs[sign_index]*(0+rand()/(double)RAND_MAX*(DBL_MAX)+0.5);
+  random_f = signs[sign_index]*(0+rand()/(double)RAND_MAX*(LLONG_MAX)+0.5);
 
   int rand_power = (int)(0+rand()/(double)RAND_MAX*(15-0)+0.5);
  
-  cout << "printf(\"%s\\nputchar('\\n');\\n\",ftoa(" << random_f << "," << rand_power << "));" << endl;
+  cout << "putchar('\\n');\nftoa(" << random_f << "," << rand_power << ");" << endl;
   
   i++;
   }
