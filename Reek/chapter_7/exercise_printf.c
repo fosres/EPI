@@ -155,10 +155,40 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 }
 
 
-int myprintf(char const * s)
+int myprintf(char const * s,...)
 {
-  while (*s != '\0')
-    putchar(*s++);
+
+  va_list var-arg;
+
+  char * s_p = (char *)(s-1);
+
+  while (*++s_p != '\0')
+  {
+	switch(*s_p)
+	{
+		case '%':
+			switch(*++s_p)
+			{
+				
+				case 'f':
+
+
+				case 'd':
+
+				case 's':
+
+				case 'c':
+
+			}
+			break;
+		default:
+	  		putchar(*s++);
+			break;
+
+	}
+
+
+  }
   return 1;
 }
 
@@ -167,27 +197,15 @@ int main(void)
 {
 
 #if 0
-	ftoa(3.6666666666666666,15);
-	putchar('\n');
-	ftoa(3.15,1);
-	putchar('\n');
-	ftoa(3.0000009,6);
-	putchar('\n');
-	ftoa(3.4545,3);
-	putchar('\n');
-	ftoa(3.0000000000000009,15);
-	putchar('\n');
-	ftoa(3.0000000000000099,15);
-	putchar('\n');
-	ftoa(1.9999999e5,1);
-	putchar('\n');
-	ftoa(2.99e1,0);
-	putchar('\n');
-	printf("%.*f\n",3,3.9999); //making sure I can format this right for test file
-	ftoa(3.9999,3);
-	putchar('\n');
-	ftoa(3.9999,3);
-#endif
+	printf("%s\n",ftoa(-3.9999,3));
+	printf("%s\n",ftoa(-1.5555,2));
+	printf("%s\n",ftoa(-3.39823929,5));
+	printf("%s\n",ftoa(-3.0000000000000099,15));
+	printf("%s\n",ftoa(-3.6666666666666666,15));
+	printf("%s\n",ftoa(-3.4545,3));
+	printf("%s\n",ftoa(-3.454599,5));
+	printf("%s\n",ftoa(-1.0000000000000009,15));
+
 	printf("%s\n",ftoa(3.9999,3));
 	printf("%s\n",ftoa(1.5555,2));
 	printf("%s\n",ftoa(3.39823929,5));
@@ -195,7 +213,8 @@ int main(void)
 	printf("%s\n",ftoa(3.6666666666666666,15));
 	printf("%s\n",ftoa(3.4545,3));
 	printf("%s\n",ftoa(3.454599,5));
-	printf("%s\n",ftoa(-1.0000000000000009,15));
+	printf("%s\n",ftoa(1.0000000000000009,15));
 
+#endif
 }
 //#endif
