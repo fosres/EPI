@@ -57,7 +57,7 @@ double nround(double input, double power)
 }
 
 
-char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
+char * ftoa(const double input, double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
@@ -72,30 +72,7 @@ char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
   double fraction = modf(in,integral); /* stores fractional part of input */
 
-#if 0
-
-	Convert mantissa stored in fraction into a long long int by first multiplying fraction by pow(10,power) and then applying strcat(a,lltoa((long long int)(fraction*pow(10,power))));
-
-	No need for while ( i < power ) loop any longer
-
-#endif
-
-
   strcat(a,lltoa(llround(fraction*pow(10,power))));
-
-#if 0
-  
-  static int i; double divisor = 0.1;
-
-  while ( i < power ) 	/* by default %f in printf is six decimal digits precise  */
-  {
-	strcat(a,lltoa(((long long int)(fraction *= 10))%10));
-
-	/*divisor /= 10;*/ i++;
-  }
-
-#endif
-
 
   return a;
 }
@@ -111,6 +88,7 @@ int myprintf(char const * s)
 //#if 0
 int main(void) 
 {
-	printf("%s\n",ftoa(3.15,0));
+	printf("%s\n",ftoa(4.901,4));
+//	printf("%s\n",ftoa(3.5,0));
 }
 //#endif
