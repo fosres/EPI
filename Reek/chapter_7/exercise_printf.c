@@ -132,8 +132,5 @@ int main(void)
 	putchar('\n');
 	ftoa(3.9999,3);
 
-	
-
-
 }
 //#endif
