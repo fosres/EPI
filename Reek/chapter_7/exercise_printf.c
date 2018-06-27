@@ -47,7 +47,7 @@ char * printd(long long int n)
   return d;
 }
 
-void lltoa(long long int n)
+char * lltoa(long long int n)
 {
   	static char s[MAX_LENGTH];
 
@@ -67,11 +67,8 @@ void lltoa(long long int n)
 	s[i] = '\0';
 	reverse(s);
 
-//	return s;
+	return s;
 
-	int c = 0;
-
-	while (s[c] != '\0') putchar(s[c++]);
 }
 
 char * lltoa2(long long int n)
@@ -170,7 +167,7 @@ void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 	while ( a[c] != '\0') putchar(a[c++]);
 }
 
-//#if 0
+#if 0
 int myprintf(char const * s,...)
 {
 
@@ -211,7 +208,7 @@ int myprintf(char const * s,...)
   return 1;
 }
 
-//#endif
+#endif
 
 //#if 0
 int main(void) 
@@ -256,7 +253,7 @@ int main(void)
 	putchar('\n');
 //#endif
 
-
+	printf("%s\n",lltoa(-233454323));
 
 }
 //#endif
