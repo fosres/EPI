@@ -56,23 +56,23 @@ double nround(double input, double power)
 
 }
 
-
-static void ftoa(const double input, double power) // pow is the '*' in "%.*f"
+// ftoa rounds accurately up to 15 digits
+void ftoa(const double input, double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
 
-  static char a[MAX_LENGTH] = "\0";
+  char a[MAX_LENGTH] = "\0";
 
   long long int f_to_i = (long long int)(in); 
   
   strcat(a,lltoa(f_to_i)); strcat(a,".");
 
-  static double integral[1000];
+  double integral[1000] = {0};
 
   double fraction = modf(in,integral); /* stores fractional part of input */
 
-  static char non_zero_mantissa[1000]; /* stores non-zero digits in mantissa after leading zeros following decimal point */
+  char non_zero_mantissa[1000] = "\0"; /* stores non-zero digits in mantissa after leading zeros following decimal point */
 
   strcat(non_zero_mantissa,lltoa(llround(fraction*pow(10,power))));
 
@@ -87,7 +87,7 @@ static void ftoa(const double input, double power) // pow is the '*' in "%.*f"
 
   strcat(a,non_zero_mantissa);
 
-  static char * a_p = a;
+  char * a_p = a;
 
   while (*a_p != '\0')
   {
@@ -111,6 +111,14 @@ int main(void)
 	putchar('\n');
 #endif
 	ftoa(3.6666666666666666,15);
+	putchar('\n');
+	ftoa(3.15,1);
+	putchar('\n');
+	ftoa(3.0000009,6);
+	putchar('\n');
+	ftoa(3.4545,3);
+	putchar('\n');
+	ftoa(3.0000000000000009,15);
 
 }
 //#endif
