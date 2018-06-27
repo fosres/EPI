@@ -189,7 +189,8 @@ int myprintf(char const * s,...)
 					ftoa(va_arg(var_arg,double),6);
 					break;
 				case 'd':	
-					char const * d = lltoa(va_arg(var_arg,double));
+					char const * d_p = lltoa(va_arg(var_arg,double));
+					while ( *d_p != '\0') putchar(*d_p++);
 					break;
 				case 's':
 
