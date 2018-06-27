@@ -4,6 +4,7 @@
 #include <math.h>
 #include <limits.h>
 #include <float.h>
+#include <assert.h>
 
 #define MAX_LENGTH 1000
 
@@ -46,7 +47,7 @@ char * printd(long long int n)
   return d;
 }
 
-char * lltoa(long long int n)
+void lltoa(long long int n)
 {
   	static char s[MAX_LENGTH];
 
@@ -66,7 +67,11 @@ char * lltoa(long long int n)
 	s[i] = '\0';
 	reverse(s);
 
-	return s;
+//	return s;
+
+	int c = 0;
+
+	while (s[c] != '\0') putchar(s[c++]);
 }
 
 char * lltoa2(long long int n)
@@ -165,7 +170,7 @@ void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 	while ( a[c] != '\0') putchar(a[c++]);
 }
 
-#if 0
+//#if 0
 int myprintf(char const * s,...)
 {
 
@@ -187,7 +192,8 @@ int myprintf(char const * s,...)
 					ftoa(va_arg(var_arg,double),6);
 					break;
 				case 'd':
-
+					ftoa(va_arg(var_arg,double),6);
+					break;
 				case 's':
 
 				case 'c':
@@ -205,13 +211,13 @@ int myprintf(char const * s,...)
   return 1;
 }
 
-#endif
+//#endif
 
 //#if 0
 int main(void) 
 {
 
-#if 0
+//#if 0
 	ftoa(-3.9999,3);
 	putchar('\n');
 	ftoa(-1.5555,2);
@@ -246,9 +252,11 @@ int main(void)
 	ftoa(1.0000000000000009,15);
 	putchar('\n');
 
-	ftoa(9.9999999999999999e15,14);
+	ftoa(9.9999999999999999e15,14); //FAILS!!!
 	putchar('\n');
-#endif
+//#endif
+
+
 
 }
 //#endif

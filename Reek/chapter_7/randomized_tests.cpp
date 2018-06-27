@@ -33,7 +33,7 @@ void generate_random_lltoa_tests()
 
   random_lld = signs[sign_index]*(0+rand()/(double)RAND_MAX*(LLONG_MAX)+0.5);
  
-  cout << "printf(\"%s\\n\",lltoa(" << random_lld << "));" << endl;
+  cout << "putchar('\\n');\nlltoa(" << random_lld << ");" << endl;
   
   i++;
   }
@@ -72,8 +72,6 @@ void generate_random_ftoa_tests()
 
 int main(void) 
 {
-	
-	generate_random_ftoa_tests();
-
+	generate_random_lltoa_tests();
 }
 
