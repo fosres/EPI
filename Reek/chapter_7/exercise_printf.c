@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <math.h>
 #include <limits.h>
 #include <float.h>
@@ -178,6 +179,10 @@ int myprintf(char const * s,...)
 
   va_start(var_arg,s);
 
+  int ROUND_TO = 0;
+
+  static char rounding[1000];
+
   while (*++s_p != '\0')
   {
 	switch(*s_p)
@@ -187,10 +192,22 @@ int myprintf(char const * s,...)
 			switch(*++s_p)
 			{
 				
-				case 'f':
+			  FLOAT:case 'f':
+					{
+
+					if (ROUND_TO)
+					{
+
+						ROUND_TO = 0;
+						char const * fr_p = ftoa(va_arg(var_arg,double),atoi(rounding));
+						while ( *fr_p != '\0') putchar(*fr_p++);
+
+					}
+					else
 					{
 					char const * f_p = ftoa(va_arg(var_arg,double),6);
 					while ( *f_p != '\0') putchar(*f_p++);
+					}
 					break;
 					}
 				case 'd':
@@ -209,6 +226,35 @@ int myprintf(char const * s,...)
 					{
 					putchar((char)va_arg(var_arg,int));
 					break;
+					}
+				case '.':
+					{
+						if (isdigit(*(s_p+1)))
+						{
+							ROUND_TO = 1;
+
+							int i = 0;
+
+							while (i < strlen(rounding) ) { rounding[i++] = '\0'; }
+
+							strcat(rounding,lltoa(*++s_p));
+
+							while (isdigit(*++s_p)) { strcat(rounding,lltoa(*s_p)); }
+						
+							--s_p;
+
+							myprintf("%d\n",atoi(rounding));
+
+							goto FLOAT;
+
+						}
+						else
+						{
+							putchar(*s_p);
+						}
+					
+
+
 					}
 				default:
 					{
@@ -276,7 +322,6 @@ int main(void)
 
 	ftoa(9.9999999999999999e15,14); //FAILS!!!
 	putchar('\n');
-#endif
 
 myprintf("Thatcher Swag\n%s\n%f\n%c\n%d\n","Swiss Cheese",3.45,'T',3535232523);
 
@@ -294,6 +339,8 @@ printf("Speed of light: %f\n",light_speed*planck_mass); //TESTS PASS
 myprintf("%f\n",planck_mass);
 
 printf("%f\n",planck_mass); //TESTS_PASS
+#endif
+myprintf("%.5f\n",3.45678999);
 
 }
 //#endif
