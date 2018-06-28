@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
+void strcat(char * buffer, char const * str)
+{
+
+  while ( *buffer != '\0')
+    buffer++;
+
+  while (*str != '\0')
+    *buffer++ = *str++;
+
+
+}
+
 void written_amount_compute(unsigned int amount, char str[]);
 
 void written_amount(unsigned int amount, char * buffer)
@@ -65,5 +77,10 @@ void written_amount_compute(unsigned int amount, char str[] )
 int main()
 {
 
+	static char s[1000];
+
+	written_amount_compute(62347,s);
+
+	printf("%s\n",s);
 
 }
