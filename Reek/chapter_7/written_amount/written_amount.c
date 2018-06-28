@@ -1,48 +1,27 @@
 #include <stdio.h>
 #include <string.h>
 
-void ptrstrcat(char * buffer, char const * str)
-{
 
-  while ( *buffer != '\0')
-    buffer++;
-
-  while (*str != '\0')
-    *buffer++ = *str++;
-
-  *buffer = '\0';
-
-}
-
-void written_amount_compute(unsigned int amount, char str[]);
 
 void written_amount(unsigned int amount, char * buffer)
 {
 
-	static char s[1000]; static char * s_p = s; while (*s_p != '\0' ) *s_p++ = '\0';
+	
+	static char const * ones[] = {"ZERO","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN","ELEVEN","TWELVE","THIRTEEN","FOURTEEN","FIFTEEN","SIXTEEN","SEVENTEEN","EIGHTEEN","NINETEEN"};
 
-	written_amount_compute(amount,s);
-
-	buffer = s;
-
-}
-
-void written_amount_compute(unsigned int amount, char str[] )
-{
-
-	char const * ones[] = {"ZERO","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN","ELEVEN","TWELVE","THIRTEEN","FOURTEEN","FIFTEEN","SIXTEEN","SEVENTEEN","EIGHTEEN","NINETEEN"};
-
-	char const * tens[] = {NULL, NULL, "TWENTY","THIRTY","FOURTY","FIFTY","SIXTY","SEVENTY","EIGHTY","NINETY"};
+	static char const * tens[] = {NULL, NULL, "TWENTY","THIRTY","FORTY","FIFTY","SIXTY","SEVENTY","EIGHTY","NINETY"};
 
 	if ( amount == 0)
-		strcat(str,ones[0]); return;
+	{
+		strcat(buffer,ones[0]); return;
+	}
 
 	if ( amount >= 1000 )
 	{
 		
-		written_amount_compute(amount/1000,str);
+		written_amount(amount/1000,buffer);
 
-		strcat(str," THOUSAND "); 
+		strcat(buffer," THOUSAND "); 
 
 		amount %= 1000;
 
@@ -51,9 +30,9 @@ void written_amount_compute(unsigned int amount, char str[] )
 	if ( amount >= 100 )
 	{
 		
-		written_amount_compute(amount/100,str);
+		written_amount(amount/100,buffer);
 
-		strcat(str," HUNDRED ");
+		strcat(buffer," HUNDRED ");
 
 		amount %= 100;
 
@@ -62,26 +41,64 @@ void written_amount_compute(unsigned int amount, char str[] )
 	if ( amount >= 20 )
 	{
 		
-		strcat(str,tens[amount/10]); strcat(str," ");
+		strcat(buffer,tens[amount/10]); strcat(buffer," ");
 
 		amount %= 10;
 
 	}
 
 	if (amount == 0 )
+	{		
 		return;
+	}
 
-	strcat(str,ones[amount]);
+	strcat(buffer,ones[amount]);
+
 
 }
+
 
 int main()
 {
 
 	static char s[1000];
+#if 0
+	written_amount(345,s);
+	printf("%s\n",s);
+	written_amount(0,s);
+	printf("%s\n",s);
+	written_amount(1,s);
+	printf("%s\n",s);
+	written_amount(2,s);
+	printf("%s\n",s);
+	written_amount(3,s);
+	printf("%s\n",s);
+	written_amount(4,s);
+	printf("%s\n",s);
+	written_amount(5,s);
+	printf("%s\n",s);
+	written_amount(6,s);
+	printf("%s\n",s);
+	written_amount(7,s);
+	printf("%s\n",s);
+	written_amount(8,s);
+	printf("%s\n",s);
+	written_amount(9,s);
+	printf("%s\n",s);
+	written_amount(10,s);
+	printf("%s\n",s);
 
-	written_amount_compute(62347,s);
-
+	written_amount(100,s);
+	printf("%s\n",s);
+	written_amount(1000,s); 
+	printf("%s\n",s);
+	written_amount(10000,s); 
+	printf("%s\n",s);
+	written_amount(67542,s); 
+	printf("%s\n",s);
+#endif
+	written_amount(59999,s); 
 	printf("%s\n",s);
 
 }
+
