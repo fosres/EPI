@@ -278,7 +278,9 @@ int main(void)
 	putchar('\n');
 #endif
 
-myprintf("Thatcher Swag\n%s\n%f\n","Swiss Cheese",3.45);
+myprintf("Thatcher Swag\n%s\n%f\n%c\n%d\n","Swiss Cheese",3.45,'T',3535232523);
 
+double a = 3.14, b = 325.3235, c = 790.866;
+myprintf("My bank account amount: %f\n",c);
 }
 //#endif
