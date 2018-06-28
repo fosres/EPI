@@ -10,6 +10,7 @@ void ptrstrcat(char * buffer, char const * str)
   while (*str != '\0')
     *buffer++ = *str++;
 
+  *buffer = '\0';
 
 }
 
