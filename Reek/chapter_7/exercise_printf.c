@@ -192,22 +192,10 @@ int myprintf(char const * s,...)
 			switch(*++s_p)
 			{
 				
-			  FLOAT:case 'f':
-					{
-
-					if (ROUND_TO)
-					{
-
-						ROUND_TO = 0;
-						char const * fr_p = ftoa(va_arg(var_arg,double),atoi(rounding));
-						while ( *fr_p != '\0') putchar(*fr_p++);
-
-					}
-					else
+			  	case 'f':
 					{
 					char const * f_p = ftoa(va_arg(var_arg,double),6);
 					while ( *f_p != '\0') putchar(*f_p++);
-					}
 					break;
 					}
 				case 'd':
@@ -237,20 +225,17 @@ int myprintf(char const * s,...)
 
 							while (i < strlen(rounding) ) { rounding[i++] = '\0'; }
 
-							strcat(rounding,lltoa(*++s_p));
 
 							while (isdigit(*++s_p)) { strcat(rounding,lltoa(*s_p)); }
 						
-							--s_p;
+							if ( *s_p == 'f' ) 
+							{
 
-							myprintf("%d\n",atoi(rounding));
-
-							goto FLOAT;
-
+							}
 						}
 						else
 						{
-							putchar(*s_p);
+							putchar(*s_p++);
 						}
 					
 
@@ -274,9 +259,10 @@ int myprintf(char const * s,...)
   }
 
 }
+
+
   va_end(var_arg);
   return 1;
-
 }
 
 //#endif
@@ -341,6 +327,7 @@ myprintf("%f\n",planck_mass);
 printf("%f\n",planck_mass); //TESTS_PASS
 #endif
 myprintf("%.5f\n",3.45678999);
+myprintf("%f\n",323.3435);
 
 }
 //#endif
