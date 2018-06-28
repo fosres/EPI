@@ -282,5 +282,18 @@ myprintf("Thatcher Swag\n%s\n%f\n%c\n%d\n","Swiss Cheese",3.45,'T',3535232523);
 
 double a = 3.14, b = 325.3235, c = 790.866;
 myprintf("My bank account amount: %f\n",c);
+
+double light_speed = 3.0e8; 
+
+double planck_mass = 2.17647051*pow(10,-8); 
+
+myprintf("Speed of light: %f\n",light_speed*planck_mass);
+
+printf("Speed of light: %f\n",light_speed*planck_mass); //TESTS PASS
+
+myprintf("%f\n",planck_mass);
+
+printf("%f\n",planck_mass); //TESTS_PASS
+
 }
 //#endif
