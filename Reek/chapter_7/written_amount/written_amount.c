@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void strcat(char * buffer, char const * str)
+void ptrstrcat(char * buffer, char const * str)
 {
 
   while ( *buffer != '\0')
