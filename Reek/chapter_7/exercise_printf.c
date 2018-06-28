@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -122,7 +123,7 @@ double nround(double input, double power)
 zero decimal places
 
 */
-void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
+char * ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 {
   
   const double in = nround(input,power); 
@@ -158,13 +159,13 @@ void ftoa(const double input, const double power) // pow is the '*' in "%.*f"
 
   strcat(a,non_zero_mantissa);
 
-#if 0
 	return a;
-#endif
 
+#if 0
 	int c = 0;
 
 	while ( a[c] != '\0') putchar(a[c++]);
+#endif
 }
 
 //#if 0
@@ -182,34 +183,54 @@ int myprintf(char const * s,...)
 	switch(*s_p)
 	{
 		case '%':
+			{
 			switch(*++s_p)
 			{
 				
 				case 'f':
-					ftoa(va_arg(var_arg,double),6);
+					{
+					char const * f_p = ftoa(va_arg(var_arg,double),6);
+					while ( *f_p != '\0') putchar(*f_p++);
 					break;
-				case 'd':	
-					char const * d_p = lltoa(va_arg(var_arg,long long int));
-					while ( *d_p != '\0') putchar(*d_p);
+					}
+				case 'd':
+					{
+					char const * d_p = (char *)lltoa(va_arg(var_arg,long long int));
+					while ( *d_p != '\0') putchar(*d_p++);
 					break;
+					}
 				case 's':
+					{
 					char const * string_p = va_arg(var_arg,char *);
 					while ( *string_p != '\0') putchar(*string_p++);
 					break;
+					}
 				case 'c':
-					putchar(va_arg(var_arg,char));
+					{
+					putchar((char)va_arg(var_arg,int));
 					break;
+					}
+				default:
+					{
+					putchar(*s_p);
+					break;
+					}
 			}
 			break;
+		}
 		default:
-	  		putchar(*s);
+			{
+	  		putchar(*s_p);
 			break;
-
-	}
+			}
 
 	
   }
+
+}
+  va_end(var_arg);
   return 1;
+
 }
 
 //#endif
@@ -218,7 +239,7 @@ int myprintf(char const * s,...)
 int main(void) 
 {
 
-//#if 0
+#if 0
 	ftoa(-3.9999,3);
 	putchar('\n');
 	ftoa(-1.5555,2);
@@ -255,8 +276,9 @@ int main(void)
 
 	ftoa(9.9999999999999999e15,14); //FAILS!!!
 	putchar('\n');
-//#endif
+#endif
 
+myprintf("Thatcher Swag\n%s\n%f\n","Swiss Cheese",3.45);
 
 }
 //#endif
