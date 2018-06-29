@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 
 
 
@@ -96,9 +97,18 @@ int main()
 	printf("%s\n",s);
 	written_amount(67542,s); 
 	printf("%s\n",s);
-#endif
 	written_amount(59999,s); 
 	printf("%s\n",s);
-
+	s[0]= '\0';
+	written_amount(2323,s);
+	printf("%s\n",s);
+#endif
+	
+	for ( unsigned int i = 0; i <= 65535 ; i++)
+	{
+		s[0] = '\0';
+		written_amount(i,s);
+		printf("%s\n",s);
+	}
 }
 
