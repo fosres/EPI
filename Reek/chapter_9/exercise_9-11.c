@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 
-void strlower(char *s)
+void strlower(char s[])
 {
 	char *s_p = s;
 
@@ -19,7 +19,7 @@ void strlower(char *s)
 
 }
 
-int count_the(char *s)
+int count_the(char s[])
 {
 
 	strlower(s); int c = 0;
@@ -45,5 +45,18 @@ int main()
 	strcat(s,"theheethtthe"); //should be 2
 
 	printf("%d\n",count_the(s));
+	
+	s[0] = '\0';
 
+	strcat(s,"he");
+
+	printf("%d\n",count_the(s));
+
+	s[0] = '\0';
+
+	strcat(s,"I love the Worldlies and the barnacles.");
+
+	printf("%d\n",count_the(s));
+
+	printf("%s\n",s);
 }

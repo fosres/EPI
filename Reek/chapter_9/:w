@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void strupper(char *s)
+{
+
+	while ( *s != '\0') 
+	{
+
+		if (isalpha(*s))
+		{
+			*s = toupper(*s);	
+		}
+
+		s++;
+	}
+
+}
