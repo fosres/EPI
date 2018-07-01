@@ -77,5 +77,15 @@ int main(void) {
   };
 
   return 0;
+
+  typedef struct
+  {
+	
+	  int a;
+
+	  short b[2];
+
+  } Ex2;
+
 }
 
