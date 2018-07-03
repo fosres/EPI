@@ -217,24 +217,27 @@ int myprintf(char const * s,...)
 					}
 				case '.':
 					{
-						if (isdigit(*(s_p+1)))
+						if (isdigit(*(s_p+1))) //peek after '.' and see if there is a digit
 						{
 							ROUND_TO = 1;
 
 							int i = 0;
 
-							while (i < strlen(rounding) ) { rounding[i++] = '\0'; }
+						static char * r_p = rounding;
+						
+							while (isdigit(*++s_p)) { *r_p++ = *s_p; }
 
-
-							while (isdigit(*++s_p)) { strcat(rounding,lltoa(*s_p)); }
+							*r_p = '\0';
 						
 							if ( *s_p == 'f' ) 
 							{
-
+								myprintf("%s",atoi(rounding));
 							}
 						}
 						else
 						{
+							putchar('%');
+
 							putchar(*s_p++);
 						}
 					
