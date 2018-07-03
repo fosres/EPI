@@ -233,6 +233,16 @@ int myprintf(char const * s,...)
 							{
 								myprintf("%s",atoi(rounding));
 							}
+							else
+							{
+
+								putchar('%');
+								
+								putchar(*s_p);
+
+								myprintf("%s",atoi(rounding);
+
+							}
 						}
 						else
 						{
