@@ -75,11 +75,11 @@ char * lltoa(long long int n)
 
 char * lltoa2(long long int n)
 {
-  
-  static char d[MAX_LENGTH];
-  static char abs[MAX_LENGTH];
-  static char * abs_p = abs;
-  static int sign;
+
+  char d[MAX_LENGTH];
+  char abs[MAX_LENGTH];
+  char * abs_p = abs;
+  int sign;
   if ( n < 0 )
   {
     *d = ('-');
@@ -95,8 +95,9 @@ char * lltoa2(long long int n)
   } 
 
     *abs_p++ = (lldiv(n,10).rem+'0'); /* first digit after pos or neg sign must be included */
-
+  
   reverse(abs); /* contents of abs are originally in reverse order of input */
+  d[0] = '\0';
   strcat(d,abs);
 
   return &d[0];
@@ -343,7 +344,15 @@ printf("%f\n",planck_mass); //TESTS_PASS
 myprintf("%.5f\n",43.235278);
 myprintf("%.5f\n",3.14159265);
 myprintf("%.3f\n",4.9999);
+myprintf("%.10f\n",1558.2392038592972022352698);
+myprintf("%.15f\n",1.2392038592972022352698); //myprintf can only round a floating-point that has 15 digits, including before mantissa or less
 myprintf("%f\n",323.3435);
+myprintf("%s %c %.3f %d\n","Swiss",'A',123.3257,1325352);
+
+myprintf("%s\n",lltoa2(32235235));
+myprintf("%s\n",lltoa2(232362351));
+myprintf("%s\n",lltoa2(LLONG_MAX));
+myprintf("My parents gave me %d hot dogs for July 4\n",359);
 
 }
 //#endif
