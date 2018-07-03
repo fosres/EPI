@@ -231,7 +231,7 @@ int myprintf(char const * s,...)
 						
 							if ( *s_p == 'f' ) 
 							{
-								myprintf("%s",atoi(rounding));
+								myprintf("%s",ftoa(va_arg(var_arg,double),atoi(rounding)));
 							}
 							else
 							{
@@ -240,7 +240,7 @@ int myprintf(char const * s,...)
 								
 								putchar(*s_p);
 
-								myprintf("%s",atoi(rounding);
+								myprintf("%s",atoi(rounding));
 
 							}
 						}
