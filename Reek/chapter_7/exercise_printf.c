@@ -181,7 +181,7 @@ int myprintf(char const * s,...)
 
   int ROUND_TO = 0;
 
-  static char rounding[1000];
+  char rounding[1000];
 
   while (*++s_p != '\0')
   {
@@ -223,7 +223,7 @@ int myprintf(char const * s,...)
 
 							int i = 0;
 
-						static char * r_p = rounding;
+						 	char * r_p = rounding;
 						
 							while (isdigit(*++s_p)) { *r_p++ = *s_p; }
 
@@ -232,6 +232,7 @@ int myprintf(char const * s,...)
 							if ( *s_p == 'f' ) 
 							{
 								myprintf("%s",ftoa(va_arg(var_arg,double),atoi(rounding)));
+								++s_p;
 							}
 							else
 							{
@@ -339,7 +340,9 @@ myprintf("%f\n",planck_mass);
 
 printf("%f\n",planck_mass); //TESTS_PASS
 #endif
-myprintf("%.5f\n",3.45678999);
+myprintf("%.5f\n",43.235278);
+myprintf("%.5f\n",3.14159265);
+myprintf("%.3f\n",4.9999);
 myprintf("%f\n",323.3435);
 
 }
