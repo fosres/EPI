@@ -12,7 +12,7 @@ int main(void)
 
    printf("Enter numbers:\n");
 
-   while ( scanf("%d",&a[i]), a[i] != ~0 )
+   while ( scanf("%d",&a[i]), a[i] != -1 ) 
    {
 	a = (int *)realloc(a,size += sizeof(int));
 	i++;
@@ -20,14 +20,12 @@ int main(void)
 
    i = 0;
 
-   do
-   {
-	printf("%d\n",a[i]);
-   }while ( a[++i] != EOF);
+   printf("\n");
 
+	while ( a[i] != -1 ) printf("%d\n",a[i++]);
 
    free( a );
-   
+  
    return(0);
 
 }
