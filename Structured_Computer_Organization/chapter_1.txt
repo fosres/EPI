@@ -1,0 +1,34 @@
+Chapter 1
+
+1. Explain each of the following terms in your own words:
+
+a. Translator (Or Compiler) -- A program that converts a program from one Turing Complete language to another Turing Complete language. The Translator can be written in any Turing Complete Language, even the target language!
+
+b. Interpreter -- A program written in a language that is lower-level than the language of the source code and directly processes the instructions of the source code. Interpretation is generally slower than compiled code since the program must process the code on the fly--but compiled code is already translated to lower-level code ahead of time.
+
+c. Virtual Machine-Software that emulates a Universal Turing Machine
+
+3. Is it conceivable for a compiler to generate outptu for the microarchitecture level insteado the ISA level? Discuss pros and cons of htis proposal.
+
+As long as the source and target languages, then yes. Pragmatic, Perhaps not. The source and target larguanges should ideally be as close to each other as possible, as this book explains. So although, in theoyr you could try to write a compiler that compiles to microarchitecture, it would not be feasible.
+
+4. It is impractical for the digital logic level to not exist in a modern computer. Without it, the computer will be incapable of carrying out any instruction, even it has the hardware (device level) capable of doing so. And it is impossible to have the digital logic level without the physical hardware (device level) capable of carrying out the digital logic level instructions.
+
+5.
+
+Remember, L0 processes and executes L1 instructions on the fly.
+
+Level 1: k instructions to execute
+
+Level 2: kn seconds to execute (Level 1 interpreter) one L2 instruction
+
+Level 3: Level 2 interpreter also needs to do n instructions to execute an L3 instruction
+
+kn^2 seconds to execute. 
+
+Level 4: kn^3
+
+Formula: k(n^l), where l=Level #
+
+6. 
+
