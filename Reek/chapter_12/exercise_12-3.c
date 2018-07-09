@@ -25,18 +25,11 @@ int dll_insert(Node * head, Node * tail, const int insert_value)
 	
 	if ( c == head )
 	{
-		Node * old_head = calloc(1,sizeof(Node));
+		int temp = head->value;
 
-		old_head->value = head->value;
+		head->value = to_insert->value;
 
-		old_head->bwd = to_insert;
-
-		old_head->fwd = head->fwd;
-
-		to_insert->fwd = old_head;
-
-		to_insert->bwd = NULL; head = to_insert;
-
+		dll_insert(head,tail,temp);
 	}
 	
 	else
@@ -104,11 +97,7 @@ int main()
 
 	print_values(head);
 
-	dll_insert(head,tail,0);
-
-	print_values(head);
-
-	dll_insert(head,tail,100);
+	dll_insert(head,tail,-1);
 
 	print_values(head);
 
