@@ -101,5 +101,21 @@ int main()
 
 	print_values(head);
 
+	dll_insert(head,tail,-10);
+
+	print_values(head);
+
+	dll_insert(head,tail,58);
+
+	print_values(head);
+
+	dll_insert(head,tail,98);
+
+	print_values(head);
+
+	dll_insert(head,tail,-100);
+
+	print_values(head);
+
 	return 0;
 }
