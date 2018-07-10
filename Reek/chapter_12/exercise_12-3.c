@@ -14,11 +14,19 @@ int dll_insert(Node * head, Node * tail, const int insert_value)
 
 	Node * to_insert = calloc(1,sizeof(Node)); to_insert->value = insert_value;
 
-	while (c->value < insert_value && c != NULL )
+	while (c->value < insert_value && c != NULL)
 	{c = c->fwd;}
 
-	if (c == NULL) //ptr addresses are identical
-	{ return -1;}
+	if (c == NULL) //node must be added after tail
+	{
+		int temp = tail->value;
+
+		tail->value = to_insert->value;
+
+		tail->fwd = NULL;
+
+		dll_insert(head,tail,temp);
+	}
 
 	if ( c->value == insert_value)
 	{ return 0;}
@@ -31,11 +39,11 @@ int dll_insert(Node * head, Node * tail, const int insert_value)
 
 		dll_insert(head,tail,temp);
 	}
-	
+
 	else
 	{
 		
-		Node * previous = c->bwd;
+		Node * previous = c->bwd; //this is why program fails when c==head
 
 		c->bwd = to_insert;
 
@@ -114,6 +122,10 @@ int main()
 	print_values(head);
 
 	dll_insert(head,tail,-100);
+
+	print_values(head);
+
+	dll_insert(head,tail,102);
 
 	print_values(head);
 
