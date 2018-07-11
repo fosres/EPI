@@ -21,45 +21,23 @@ int sll_length(Node * first)
 
 }
 
-Node * sll_reverse( Node * first)
+void sll_reverse(Node * first)
 {
-	if (first == NULL)
-	{ return NULL; }
+	Node * f = first;	
 
-	Node * previous = calloc(1,sizeof( Node));
+	while ( f != NULL ) f++;
+	
+	f--; // now pointing to last element
 
-	previous = first;
+	Node * reverse = calloc(1,sizeof(Node)); Node * r_zero = reverse;
+	
+	while (reverse = f, reverse++, f--, f >= first)
+		;
 
-	Node * c = calloc(1,sizeof(Node));
+	reverse = NULL;
 
-	c = first->link;
+	first = r_zero;	
 
-	previous->link = NULL;
-
-	Node * next = calloc(1,sizeof(Node));
-
-	next = c;
-
-	while (next != NULL)
-	{
-		
-		if (previous==first) // second
-		{next = c->link; c->link = previous; previous = next;}
-		else
-		{
-			previous = next;
-			
-			c = previous->link;
-
-			next = c->link;
-
-			c->link = previous;
-
-		}
-
-	}
-
-	return c;
 
 }
 
@@ -103,8 +81,6 @@ int main()
 	Node * fifth = calloc(1,sizeof(Node));
 
 	fifth->value = 5;
-
-	fifth->link = NULL;
 	
 	first->link = second;
 
@@ -113,9 +89,21 @@ int main()
 	third->link = fourth;
 
 	fourth->link = fifth;
-
-	Node * rev = sll_reverse(first);
 	
-	printf("%d\n",rev->value);
-//	print_values(rev);
+	fifth->link = NULL;
+#if 0
+	sll_reverse(first);
+#endif
+	Node * c = calloc(1,sizeof(Node));
+
+	int i = 0;
+
+	while (i++ < 5) {c++->link = calloc(1,sizeof(Node));}
+	
+	c->link = NULL;
+
+	i = 0;
+
+	while (i++ < 5) {printf("%d\n",c++->value = i);}
+
 }
