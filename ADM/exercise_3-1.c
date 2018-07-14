@@ -29,4 +29,11 @@ int main()
 	printf("%d\n",check_par("((())())()"));
 	printf("%d\n",check_par(""));
 	printf("%d\n",check_par("((("));
+	printf("%d\n",check_par("((())"));
+	printf("%d\n",check_par("((()))"));
+	printf("%d\n",check_par("(((())))(())(((())))()"));
+	printf("%d\n",check_par("7 + (6 × 25 + 3)"));
+	printf("%d\n",check_par("(x^2+y^2)(x+v)"));
+	putchar(' ');
+	printf("%d\n",check_par("[(2x+1)+(2a+1)][(3x-1)+(3a-1)]"));
 }
