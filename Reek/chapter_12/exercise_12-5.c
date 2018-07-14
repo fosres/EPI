@@ -21,28 +21,45 @@ int sll_length(Node * first)
 
 }
 
-Node * sll_reverse(Node * first)
+int sll_remove(Node ** rootp, Node *node)
 {
-	if ( first == NULL) {return NULL;}	
-
-	Node * reverse = calloc(1,sizeof(Node)); Node *r = reverse; Node * r_zero = reverse;
-	
-	Node * f = first;
-
 	int len = 0;
 
-	while ( f != NULL ) {f = f->link; len++;}
+	Node * s = *rootp;
 
-	Node * tail = (first + len - 1);	
-	
-	for ( int j = len-1; j >= 1; j--)
+	while ( s != NULL) {len++;s = s->link;}
+
+	int i = 0;
+
+	while ( i < len )
 	{
-		first[j].link = &first[j-1];
+		if ( *rootp+i == node )
+		{
+			if ( len == 1)
+			{*rootp = NULL; return 1;}
+
+			else if ( i == len -1)
+			{ (*rootp+i-1)->link = NULL; return 1;}
+
+			else if ( i == 0 )
+			{
+				*rootp = NULL; return 1; 
+			}
+			else
+			{
+				(*rootp+i-1)->link  = (*rootp+i+1);
+
+				return 1;
+
+			}
+		}
+
+		i++;
+
 	}
 
-	first[0].link = NULL;
-	
-	return tail;
+	return 0;
+
 }
 
 void print_values( Node * head)
@@ -58,7 +75,6 @@ void print_values( Node * head)
 	}
 
 }
-
 
 int main()
 {
@@ -95,12 +111,21 @@ int main()
 	fourth->link = fifth;
 	
 	fifth->link = NULL;
-	
-	print_values(sll_reverse(first));
 
+	Node * sixth = calloc(1,sizeof(Node));
+
+	sixth->value = 6;
+
+	sixth->link = NULL;
+	
 	Node ** rootp = &first;
 
-	printf("%d\n",(*rootp+4)->value);
+	printf("%p\n",*rootp+4);
 
 	printf("%p\n",fifth);
+
+	printf("%d\n",sll_remove(&second,fourth));
+
+	print_values(second);
 }
+
