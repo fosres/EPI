@@ -8,7 +8,7 @@
 
 void push();
 
-void pop();
+STACK_TYPE pop();
 
 STACK_TYPE top();
 #endif // __STACK_H__
