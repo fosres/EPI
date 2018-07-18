@@ -52,7 +52,7 @@ STACK_TYPE eval_RPN(char *s)
 			
 			case '-':
 			{ 
-				if (*(s_p+1) == ',')
+				if (*(s_p+1) == ','||*(s_p+1) == '\0')
 				{
 				int op2 = pop();
 
@@ -77,13 +77,14 @@ STACK_TYPE eval_RPN(char *s)
 			{ break; }
 			default:
 			{ 
-				// '-' is NOT a digit
 				while (isdigit(*s_p)) { *num_p++ = *s_p++; }
 
 				*num_p = '\0';
 				
 				if (IS_NEG)
 				{ push(-atoi(number)); IS_NEG = 0;}
+				else
+				{ push(atoi(number)); }
 
 				num_p = &number[0];
 
@@ -95,12 +96,28 @@ STACK_TYPE eval_RPN(char *s)
 		s_p++;
 	
 	}
+
+	stack_p = (&stack[0] - 1);
 	
 	return stack[0];
 }
 
 int main()
 {
-	printf("%d\n",eval_RPN("-42,-32,+"));
-//	printf("%d\n",eval_RPN("18,3,/,6,+"));
+	printf("%d\n",eval_RPN("-36,-36,+,-10,+"));
+	printf("%d\n",eval_RPN("18,3,/,6,+"));
+	
+	printf("%d\n",eval_RPN("3,4,+,2,*,1,+"));
+
+	printf("%d\n",eval_RPN("-641,6,/,28,/"));
+
+	printf("%d\n",eval_RPN("3252"));
+
+	printf("%d\n",eval_RPN("-10"));
+
+	printf("%d\n",eval_RPN("10,-10,-,-10,-,-10,-"));
+
+	printf("%d\n",eval_RPN("32,-32,-,32,-,-32,-,32,-,32,+,64,-"));
+
+	printf("%d\n",eval_RPN("-9999"));
 }
