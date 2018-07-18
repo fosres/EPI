@@ -1,57 +1,54 @@
 #include <stdio.h>
-#include "quicksort.h"
 
-void swap(ELEMENT_TYPE * a, ELEMENT_TYPE * b)
+int partition(int a[], int p, int r);
+void quicksort(int a[], int p, int r)
 {
-	ELEMENT_TYPE temp = *a;
+	if (p < r)
+	{ 
+		int q = partition(a,p,r);
 
-	*a = *b;
+		quicksort(a,p,q);
 
-	*b = temp;
+		quicksort(a,q+1,r);
+
+	}
 }
 
-void quicksort(ELEMENT_TYPE a[],ELEMENT_TYPE l, ELEMENT_TYPE r)
+int partition(int a[], int p, int r)
 {
-	
-	ELEMENT_TYPE i;
+	int x = a[p];
 
-	if ( l >= r ) return;
+	int i = p - 1;
 
-	i = partition(a,l,r);
-
-	quicksort(a,l,i-1);
-	
-	quicksort(a,i+1,r);
-
-}
-
-ELEMENT_TYPE partition(ELEMENT_TYPE a[], ELEMENT_TYPE l, ELEMENT_TYPE r)
-{
-
-	ELEMENT_TYPE i = l-1; ELEMENT_TYPE j = r;
-
-	ELEMENT_TYPE v = j;
+	int j = r + 1;
 
 	while (1)
 	{
-		while (a[++i] <= v)
-			;
+		while (a[--j] <= x);
 
-		while (v <= a[--j])
-		{
-			if ( j == l) break;
+		while (a[++i] >= x);
+
+		if (i < j)
+		{ 
+			int temp = a[i];
+
+			a[i] = a[j];
+
+			a[j] = temp;
+
 		}
-
-		if (i >= j)
-		{
-			break;
-		}
-
-		swap(&a[i],&a[j]);
+		else
+		{ break;}
 	}
-
-	swap(&a[i],&a[r]);
-
-	return i;
+	return j;
 }
 
+int main()
+{
+	int a[] = {4,3,2,1};
+
+	quicksort(a,0,3);
+
+	for ( int i = 0; i < 4; i++)
+	{ printf("%d\n",a[i]); }
+}
