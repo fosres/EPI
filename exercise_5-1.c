@@ -1,62 +1,62 @@
 #include <stdio.h>
 
-int partition(int a[], int l, int r)
+void dutch_problem(int a[], const int pivot_i, const int len)
 {
+	int i = 0; 
 
-	int i = l-1; int j = r; int v = a[r];
+	int temp[len]; int j = 0; const int pivot = a[pivot_i];
 
-	while (1)
+	while (i < len)
 	{
-		do
+		if (a[i] < pivot)
 		{
-			i++;
-		}while(a[i] < v);
-
-		do
-		{
-			j--;
-		}while(v < a[j] && j != l);
-
-		if ( i >= j) {break;}
-
-		int temp = a[i];
-
-		a[i] = a[j];
-
-		a[j] = temp;
-
+			temp[j++] = a[i++];
+		}
+		else
+		{ i++;}
 	}
 
-	int temp = a[i];
+	i = 0;
 
-	a[i] = a[r];
+	while (i < len)
+	{
+		if (a[i] == pivot)
+		{ temp[j++] = a[i++];}
+		else 
+		{i++;}
+	}
 
-	a[r] = temp;
+	i = 0;
 
-	return i;
+	while (i < len)
+	{
+		if (a[i] > pivot)
+		{temp[j++] = a[i++];}
+		else
+		{i++;}
+	}
 
+	i = 0;
+
+	while (i < len)
+	{
+		a[i] = temp[i];
+		i++;
+	}
+
+	i = 0;
+
+#if 0
+	while ( i < len)
+	{ printf("%d\n",a[i++]); }
+#endif
 }
 
-void quicksort(int a[], int l, int r)
-{
-	if (r <= l) {return;}
-
-	int i = partition(a,l,r);
-
-	quicksort(a,l,i-1);
-
-	quicksort(a,i+1,r);
-}
 int main()
 {
-	int a[] = {4,3,2,1,0,9,6,5};
+	
+	int a[] = {0,1,2,0,2,1,1};
 
-	quicksort(a,0,7);
+	dutch_problem(a,3,sizeof(a)/sizeof(int));
 
-	for ( int i = 0; i < 8; i++)
-	{
-		printf("%d\n",a[i]);
-	}
-
-	return 0;
 }
