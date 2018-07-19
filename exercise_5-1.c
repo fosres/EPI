@@ -57,6 +57,9 @@ int main()
 	
 	int a[] = {0,1,2,0,2,1,1};
 
-	dutch_problem(a,3,sizeof(a)/sizeof(int));
+	dutch_problem(a,2,sizeof(a)/sizeof(int));
+
+	for ( int i = 0; i < sizeof(a)/sizeof(int); i++)
+	{ printf("%d\n",a[i]); }
 
 }
