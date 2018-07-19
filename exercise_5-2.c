@@ -56,9 +56,9 @@ void inc_arr(int a[], int len)
 
 int main()
 {
-	int a[4] = {-3,0,0};
+	int a[5] = {-4,5,6,7};
 
-	inc_arr(a,3); // input for len must be actual # of digits initialized in array, NOT sizeof(a)/sizeof(int)
+	inc_arr(a,4); // input for len must be actual # of digits initialized in array, NOT sizeof(a)/sizeof(int)
 
 	for ( int i = 0; i < 4 ; i++)
 	{
