@@ -139,7 +139,7 @@ int main()
 	print_values(head);
 #endif
 
-	dll_insert(head,tail,553);
+dll_insert(head,tail,553);
 dll_insert(head,tail,4235);
 dll_insert(head,tail,5938);
 dll_insert(head,tail,2346);

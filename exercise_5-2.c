@@ -1,67 +1,97 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "Node.h"
 
-void reverse(int a[], const int len)
+void reverse (int * a, int len)
 {
-	for (int i = 0, j = len-1; i < j; i++, j--)
+	for ( int i = 0, j = len - 1; i < j; i++, j--)
 	{
 		int temp = a[i];
 
 		a[i] = a[j];
 
 		a[j] = temp;
+
 	}
+
 }
 
-void inc_arr(int a[], int len)
+int * inc_arr(int *a, int len)
 {
-	int IS_NEG = 0;	
-	if ( a[0] < 0)
-	{ IS_NEG = 1; a[0] = -a[0];}
-
-	int temp = 0;
 	
-	int i = 0;
-	while (i < len)
-	{
-		temp = temp * 10 + a[i];
+	int result_len = 0;
 
-		i++;
+	reverse(a,len); int * a_end = (a + len - 1);
+
+	*a = *a + 1; int carry = *a/10; *a = *a%10; 
+
+	Node * result = (Node *)calloc(1,sizeof(Node));
+	
+	Node * result_zero = result;
+
+	Node * next = (Node *)calloc(1,sizeof(Node));
+	
+	result->link = next;
+	
+	result->value = *a; result = result->link; result_len++;
+
+	while (a <= a_end)
+	{
+		if ( carry != 0)
+		{
+			result->value = (carry + *a)%10; 
+
+			carry = (carry + *a)/10;
+		}
+
+		else
+		{ result->value = *a; carry = 0;}
+
+		Node * next = (Node *)calloc(1,sizeof(Node));
+
+		result->link = next;
+		
+		result = result->link; result_len++;
+
+		a++;
 	}
 
-	if (!IS_NEG)
-	{temp++;}
+	if ( carry != 0)
+	{ 
+		result->value = carry; result_len++;
+
+		result->link = NULL;
+	}
+
 	else
-	{temp--;}
+	{ result = NULL; }
 
-	i = 0;
-	
-	len = 0;
+	int a_final[result_len]; int *a_f = a_final;
 
-	do
+	while (result_zero != NULL)
 	{
-		a[i] = temp%10;
-	
-		i++; len++;
-
-		temp /= 10;
-	}while (temp > 0);
-
-	reverse(a,len);
-
-	if (IS_NEG)
-	{
-		a[0] = -a[0];
+		*a_f++ = (result_zero->value);
+		
+		result_zero = result_zero->link;
 	}
+
+	reverse(a_final,result_len);
+
+	return a_final;
+
 }
+
 
 int main()
 {
-	int a[5] = {-4,5,6,7};
+	int a[3] = {1,2,9};
 
-	inc_arr(a,4); // input for len must be actual # of digits initialized in array, NOT sizeof(a)/sizeof(int)
+	int * b = inc_arr(a,3);
 
-	for ( int i = 0; i < 4 ; i++)
-	{
-		printf("%d\n",a[i]);
-	}
+	printf("%d\n",*b++);
+	printf("%d\n",*b++);
+	printf("%d\n",*b++);
+	printf("%d\n",*b++);
+	printf("%d\n",*b++);
+
 }
