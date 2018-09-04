@@ -34,7 +34,9 @@ char * normpath(char * s)
         while ( *stack_p != '/' )
         { pop(); }
 
-        s++;
+        s =  (s + 2);
+
+        continue;
 
       
 
@@ -72,7 +74,7 @@ int main(void) {
 
   
   
-  char * str = "/usr/lib/../..";
+  char * str = "/usr////././lib////";
 
   printf("%s\n",normpath(str));
   
