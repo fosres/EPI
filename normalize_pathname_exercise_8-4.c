@@ -2,13 +2,13 @@
 
 
 
-static char stack[1000];
+char stack[1000];
 
-static char * stack_p = (&stack[0]-1);
+char * stack_p = (&stack[0]-1);
 
 void push(char c);
 
-char pop();
+void pop();
 
 char * normpath(char * s)
 {
@@ -16,8 +16,10 @@ char * normpath(char * s)
   {
     if ( *s == '/' )
     {
-      if ( *stack_p == '/' )
+      
+      if ( *stack_p == '/' && stack_p >= &stack[0] )
       { }
+      
       else
       { push(*s); }
 
@@ -25,12 +27,16 @@ char * normpath(char * s)
 
     else if ( *s == '.' )
     {
-      if ( *(s+1) == '.' )
+      if ( *stack_p == '/' && *(s+1) == '.' )
       {
         pop(); // remove first '/'
 
         while ( *stack_p != '/' )
         { pop(); }
+
+        s++;
+
+      
 
       }
 
@@ -54,8 +60,8 @@ char * normpath(char * s)
 void push( char c )
 { *++stack_p = c; }
 
-char pop()
-{ return *stack_p--;}
+void pop()
+{ *stack_p-- = '\0';}
 
 
   
@@ -66,7 +72,7 @@ int main(void) {
 
   
   
-  char * str = "///////";
+  char * str = "/usr/lib/../..";
 
   printf("%s\n",normpath(str));
   
