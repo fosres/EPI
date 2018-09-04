@@ -29,6 +29,9 @@ char * normpath(char * s)
     {
       if ( *stack_p == '/' && *(s+1) == '.' )
       {
+        if ( stack_p <= &stack[0] ) 
+        { return "Error: moving above root directory!"; }
+        
         pop(); // remove first '/'
 
         while ( *stack_p != '/' )
@@ -74,7 +77,7 @@ int main(void) {
 
   
   
-  char * str = "/usr////././lib////";
+  char * str = "/usr/./////./////.//////././//////.//////lib/slib/////../../../..";
 
   printf("%s\n",normpath(str));
   
