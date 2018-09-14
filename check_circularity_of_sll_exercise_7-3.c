@@ -61,13 +61,23 @@ int check_circularity(Node * input, tree * root)
   {
     return 1;
   }
-
-  #if 0
-  PROBLEM IS WITH INSERT FUNCTION
-  #endif
-
   check_circularity(input->link,root);
 
+}
+
+Node * check_circ(Node * input)
+{
+
+  tree * root = (tree *)malloc(sizeof(tree));
+
+  if ( check_circularity(input,root) == 0)
+  {
+    return NULL;
+  }
+
+  free(root);
+
+  return input;
 }
 
 
@@ -101,7 +111,9 @@ int main(void)
 
   tree * root = (tree *)malloc(sizeof(tree));
 
-  printf("%d\n",check_circularity(second,root));
+  printf("%p\n",fourth);
+
+  printf("%p\n",check_circ(fourth));
 
 
   free(head);
