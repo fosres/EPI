@@ -11,8 +11,11 @@ typedef struct Node
 
 void delete_node (Node * rootp)
 {
-  if ( (rootp) == NULL )
+  if ( (rootp->link) == NULL )
   {
+
+    printf("\nError: You cannot delete the tail of a node!\n\n");
+
     return;
   }
 
@@ -60,7 +63,7 @@ fourth->link = NULL;
 
 print_sll(first);
 
-delete_node(third);
+delete_node(fourth);
 
 print_sll(first);
 
