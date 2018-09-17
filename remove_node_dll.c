@@ -78,6 +78,8 @@ int main(void)
 
   Node * third = (Node *)malloc(sizeof(Node));
 
+  Node * fourth = (Node *)malloc(sizeof(Node));
+
   first->link = second;
 
   first->bwd = NULL;
@@ -94,7 +96,7 @@ int main(void)
 
   print_dll_bwd(third);
 
-  printf("%d\n\n",remove_node_dll(&first,first));
+  printf("%d\n\n",remove_node_dll(&first,fourth));
 
   print_dll_fwd(first);
 
@@ -105,5 +107,7 @@ int main(void)
   free(second);
 
   free(third);
+
+  free(fourth);
 
 }
