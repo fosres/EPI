@@ -78,6 +78,12 @@ int main(void) {
   remove_node_sll(&second,third);
 
   print_sll(first);
+  
+  free(first);
+  
+  free(second);
+  
+  free(third);
 
 
   return 0;
