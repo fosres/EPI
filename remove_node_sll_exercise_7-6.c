@@ -59,7 +59,8 @@ void print_sll(Node * first)
   printf("\n\n");
 }
 
-int main(void) {
+int main(void) 
+{
   
   Node * first = (Node *)malloc(sizeof(Node));
 
@@ -85,6 +86,6 @@ int main(void) {
   
   free(third);
 
-
   return 0;
+  
 }
