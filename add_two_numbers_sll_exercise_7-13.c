@@ -8,6 +8,22 @@ typedef struct Node
   int value;
 } Node;
 
+int reverse_num(int x)
+{
+  int reverse = 0;
+
+  while (x > 0)
+  {
+    reverse *= 10;
+
+    reverse += x%10;
+
+    x /= 10;
+  }
+
+  return reverse;
+}
+
 Node * add_two_numbers(Node * first, Node * second)
 {
   int first_num = 0;
@@ -32,8 +48,13 @@ Node * add_two_numbers(Node * first, Node * second)
     second = second->link;
   }
 
+  first_num = reverse_num(first_num);
+
+  second_num = reverse_num(second_num);
+
   int ans = first_num + second_num;
 
+  ans = reverse_num(ans);
   
   Node * p = (Node *)malloc(sizeof(Node));
 
@@ -52,6 +73,8 @@ Node * add_two_numbers(Node * first, Node * second)
 
     p = p->link;
     }
+
+  
   }
 
   
@@ -76,7 +99,7 @@ int main(void)
 {
  Node * first = (Node *)malloc(sizeof(Node));
 
- first->value = 1;
+ first->value = 2;
 
  Node * second = (Node *)malloc(sizeof(Node));
 
@@ -84,11 +107,11 @@ int main(void)
 
  Node * third = (Node *)malloc(sizeof(Node));
 
- third->value = 3;
+ third->value = 4;
 
  Node * fourth = (Node *)malloc(sizeof(Node));
 
- fourth->value = 4;
+ fourth->value = 6;
 
  first->link = second;
 
