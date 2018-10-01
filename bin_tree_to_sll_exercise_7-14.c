@@ -146,6 +146,10 @@ int main(void) {
   tree * top = (tree *)malloc(sizeof(tree));
 
   top->value = 3;
+  
+  top->left = NULL;
+  
+  top->right = NULL;
 
   insert_to_tree(&top,16);
 
@@ -172,6 +176,10 @@ int main(void) {
   printf("\n");
 
   Node * first = (Node *)malloc(sizeof(Node));
+  
+  first->value = 0;
+  
+  first->link = NULL;
 
   make_sll(top,&first);
 
