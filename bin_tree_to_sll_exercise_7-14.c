@@ -89,6 +89,19 @@ void tree_to_sll(tree * root, Node * node)
   }
 }
 
+void make_sll(tree * root, Node ** node)
+{
+  tree_to_sll(root,*node);
+
+  Node * second = (*node)->link;
+
+  Node ** first_del = node;
+
+  free(*node);
+
+  *first_del = second;
+}
+
 
 void print_list(Node * root)
 {
@@ -161,19 +174,7 @@ int main(void) {
 
   Node * first = (Node *)malloc(sizeof(Node));
 
-  tree_to_sll(top,first);
-
-#if 0 
-Need to delete first element!
-#endif
-
-  Node ** first_del = &first;
-
-  Node * second = first->link;
-
-  free(first);
-
-  *first_del = second;
+  make_sll(top,&first);
 
   print_list(first);
 
