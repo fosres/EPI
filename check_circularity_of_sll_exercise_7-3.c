@@ -125,15 +125,14 @@ int main(void)
   fourth->link = NULL;
 
   tree * root = (tree *)malloc(sizeof(tree));
-  
+
   root->left = NULL; root->right = NULL;
-  
+
   root->node = NULL;
 
   printf("%p\n",fourth);
 
-  printf("%p\n",check_circ(fourth));
-
+  printf("%d\n",check_circularity(fourth,root));
 
   free(head);
 
@@ -142,8 +141,9 @@ int main(void)
   free(third);
 
   free(fourth);
-
+  
   free_tree(root);
-
+  
+  return 0;
 
 }
