@@ -125,6 +125,10 @@ int main(void)
   fourth->link = NULL;
 
   tree * root = (tree *)malloc(sizeof(tree));
+  
+  root->left = NULL; root->right = NULL;
+  
+  root->node = NULL;
 
   printf("%p\n",fourth);
 
