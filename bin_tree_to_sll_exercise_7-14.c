@@ -171,7 +171,6 @@ int main(void) {
 
   printf("\n");
 
-
   Node * first = (Node *)malloc(sizeof(Node));
 
   make_sll(top,&first);
