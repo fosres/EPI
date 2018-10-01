@@ -18,16 +18,27 @@ typedef struct tree
   Node * node;
 } tree;
 
+void free_tree(tree * root)
+{
+  if ( root != NULL)
+  {
+    
+    free_tree(root->left);
+    
+    free_tree(root->right);
+    
+    free(root);
+    
+  }
+}
 int insert(tree ** rootp, Node * in)
 {
   
   if ( (*rootp) == NULL )
   {
-    tree * p = (tree *)malloc(sizeof(tree));
+    (*rootp) = (tree *)malloc(sizeof(tree));
 
-    p->left = NULL; p->right = NULL; p->node = in;
-
-    (*rootp) = p;
+    (*rootp)->left = NULL; (*rootp)->right = NULL; (*rootp)->node = in;
     
     return 0; // No circularity
 
@@ -69,6 +80,10 @@ Node * check_circ(Node * input)
 {
 
   tree * root = (tree *)malloc(sizeof(tree));
+  
+  root->left = NULL; root->right = NULL;
+  
+  root->node = NULL;
 
   if ( check_circularity(input,root) == 0)
   {
@@ -124,7 +139,7 @@ int main(void)
 
   free(fourth);
 
-  free(root);
+  free_tree(root);
 
 
 }
