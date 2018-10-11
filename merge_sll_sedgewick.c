@@ -50,6 +50,57 @@ Node * merge(Node * l, Node * r)
 
 }
 
+Node * merge_sort(Node *c)
+{
+
+	if ( c == NULL || c->link == NULL)
+	{
+		return c;
+
+	}
+
+	Node * a = c; Node * b = c->link;
+
+	while ( b != NULL && b->link != NULL)
+	{
+		c = c->link; b = b->link->link;
+	}
+
+	b = c->link; c->link = NULL;
+
+	return merge(merge_sort(a),merge_sort(b));
+}
+
+Node * mergesort_k_lists(Node ** nap, Node ** nap_stop)
+{
+
+
+	if ( *nap == NULL || *(nap+1) == NULL)
+	{
+		return *nap;
+	}
+	
+	Node * ans = merge_sort(*nap);
+
+	while (nap < nap_stop && (nap+1) < nap_stop)
+	{
+		ans = merge(ans,merge_sort(*(nap+1)));
+
+		nap++;
+
+	}
+
+	if (nap < nap_stop)
+	{
+
+		ans = merge(ans,merge_sort(*nap));
+	}
+
+	return ans;
+
+
+}
+
 	Node * insert_value(Node * root, int in)
 	{
 		if ( root == NULL)
@@ -105,15 +156,15 @@ int main()
 
 	Node * first_z = first;
 
-	first->value = 4; first->link = NULL;
+	first->value = 3; first->link = NULL;
 
-	first = insert_value(first,5);	
+	first = insert_value(first,9);	
 
 	first = insert_value(first,6);
 
-	first = insert_value(first,7);
+	first = insert_value(first,5);
 
-	first = insert_value(first,8);
+	first = insert_value(first,7);
 
 	print_list(first_z);
 
@@ -121,26 +172,32 @@ int main()
 
 	Node * second_z = second;
 
-	second->value = 2;
+	second->value = 7;
 
-	second = insert_value(second,3);
+	second = insert_value(second,9);
 
 	second = insert_value(second,4);
 
+	second = insert_value(second,2);
+
+	second = insert_value(second,10);
+
 	second = insert_value(second,5);
-
-	second = insert_value(second,6);
-
-	second = insert_value(second,7);
 
 	print_list(second_z);
 
-	Node * ans = merge(first_z,second_z);
+	Node * na[2];
+
+	na[0] = first_z;
+
+	na[1] = second_z;
+
+	
+
+	Node * ans = mergesort_k_lists(na,na+2);
 
 	print_list(ans);
 	
 	free_list(ans);
-	
-	free_list(first);	
 
 }
