@@ -1,3 +1,10 @@
+#if 0
+  
+
+Warning: Uses binary trees to rearrange linkages of original nodes. Not easy to understand or maintain.
+
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 
