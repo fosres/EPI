@@ -69,6 +69,7 @@ Node * merge_sort(Node *c)
 	b = c->link; c->link = NULL;
 
 	return merge(merge_sort(a),merge_sort(b));
+
 }
 
 Node * mergesort_k_lists(Node ** nap, Node ** nap_stop)
@@ -80,24 +81,17 @@ Node * mergesort_k_lists(Node ** nap, Node ** nap_stop)
 		return *nap;
 	}
 	
-	Node * ans = merge_sort(*nap);
+	Node * ans = NULL;
 
-	while (nap < nap_stop && (nap+1) < nap_stop)
+	while ( (nap < nap_stop) )
 	{
-		ans = merge(ans,merge_sort(*(nap+1)));
+		ans = merge(ans,merge_sort(*nap));
 
 		nap++;
 
 	}
 
-	if (nap < nap_stop)
-	{
-
-		ans = merge(ans,merge_sort(*nap));
-	}
-
 	return ans;
-
 
 }
 
@@ -192,12 +186,15 @@ int main()
 
 	na[1] = second_z;
 
-	
-
 	Node * ans = mergesort_k_lists(na,na+2);
 
+	Node * q = merge_sort(ans);	
+
 	print_list(ans);
+
+	print_list(q);
 	
 	free_list(ans);
+
 
 }
