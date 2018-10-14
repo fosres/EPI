@@ -62,7 +62,7 @@ Node * pop()
 int in_stack(Node * r)
 {
 
-	static Node ** current_p = stack_p;
+	Node ** current_p = stack_p;
 
 	while (stack_p > (&stack[0]-1) && pop() != r)
 		;
