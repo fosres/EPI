@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if 0
+
+Uses mergesort and NOT binary trees
+
+#endif
+
 typedef struct Node
 {
 	struct Node * link;
