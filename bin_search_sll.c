@@ -25,6 +25,9 @@ Node * bin_search(Node * c, int key)
 
 	if ( a->value == key)
 	{ return a;}
+
+	if ( c-> value == key)
+	{ return c; }
 	
 	if (b != NULL && b->value == key)
 	{ return b; }
@@ -32,17 +35,16 @@ Node * bin_search(Node * c, int key)
 	if ( key < a->value)
 	{ return NULL; }
 
-	if ( b != NULL && key > b->value )
-	{ return bin_search(b,key); }
+	if ( key < c->value )
+	{ return bin_search(a,key); }
 
 	if ( b == NULL && key > c->value)
 	{ return NULL; }
 
-	if (key > a->value)
-	{ return bin_search(a,key); }
-
+	if ( b != NULL && key > b->value )
+	{ return bin_search(b,key); }
+	
 	return NULL;
-
 }
 
 void free_list(Node * r)
@@ -75,13 +77,19 @@ int main()
 
 	third->value = 7;
 
+	Node * fourth = (Node *)malloc(sizeof(Node));
+	
+	fourth->value = 8;
+
 	first->link = second;
 
 	second->link = third;
 
-	third->link = NULL;
+	third->link = fourth;
 
-	Node * ans = bin_search(first,2);
+	fourth->link = NULL;
+
+	Node * ans = bin_search(first,9);
 
 	if ( ans != NULL)
 	{
