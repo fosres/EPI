@@ -58,7 +58,7 @@
 
 # Sync Projects
 
-cd ~/Desktop/Git/Projects/
+cd ~/Desktop/Git/Projects/Projects
 
 pwd; printf "\n"; bash git_save.sh; printf "\n"; printf "\n"
 
