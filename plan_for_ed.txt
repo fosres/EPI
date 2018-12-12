@@ -1,0 +1,35 @@
+
+1. ed only allows 1024 characters per line TOTAL
+
+2. ed allows infinite lines in a file.
+
+3. By default, the contents of a file are stored in
+
+a linked list of linked lists, where each linked list
+
+stores the letter contents of a line.
+
+4. When searching, an AVL algorithm is used  to convert:
+
+the linked list of linked lists into one large binary tree of
+
+words.
+
+5. A single space is ignored, but all spaces afterwards are
+
+considered part of a word up to the next nonspace character.
+
+6. This makes searching for a word in the text file much, much faster.
+
+Each root of the binary tree contains a pointer to the head of the linked
+
+list and an int storing the line number the word is in.
+
+7. A hash table algorithm will be used to convert the line number to the exact memory
+
+address of the head of the linked list that stores the contents of that line.
+
+8. The AVL binary tree will be used whenever ed is supposed to find a string using g/re/p and s/re/p
+
+9. It is best to update the AVL binary tree for each line added. Although the cost of this memory.
+
