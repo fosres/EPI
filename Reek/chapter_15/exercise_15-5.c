@@ -3,18 +3,27 @@
 #include <string.h>
 #include <ctype.h>
 
-void sum_beg_ints(char * arr)
+char * sum_beg_ints(char * arr)
 {
     char * nl = NULL;
 
     int sum = 0;
 
-    while ( (nl = strchr(arr,'\n')) != NULL )
+    const char * arr_end = arr + strlen(arr);
+
+    while ( ( (nl = strchr(arr,'\n') ) != NULL ) && (arr < arr_end) )
     {
         if ( isdigit(*(nl+1)) )
         {sum += *(nl+1);}
-    }
 
+        arr = nl+1;
+    }
+    
+    char ans[128];
+
+    sprintf(ans,"//\tThe sum of the digits at the beginning of the line is %d\n",sum);
+
+    return ans;
 }
 
 void free_arr(void * arr, int size)
@@ -81,7 +90,13 @@ int main(int argc, char ** argv)
 
     }
 
-fclose(fp);
+    fclose(fp);
+
+    fp = fopen(argv[2],"ab");
+
+    fwrite(sum_beg_ints,sizeof(*sum_beg_ints),128,fp);
+
+    fclose(fp);
 
 free_arr(arr,SIZE);
 
