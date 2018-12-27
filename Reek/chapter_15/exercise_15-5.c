@@ -9,24 +9,51 @@ char * sum_beg_ints(char * arr)
 
     int sum = 0;
 
+    static char num[11];
+
+    static char * num_p = &num[0];
+
+    int beg_int = 0;
+
     const char * arr_end = arr + strlen(arr);
 
     if ( isdigit(*arr))
     {
-        sum += ( *arr - '0');
+       while (isdigit(*arr) )
+       {
+           *num_p++ = *arr++;  
+       }
+
+       *num_p = '\0';
+        
+        sum += strtol(num,NULL,10);   
+        
+        num_p = &num[0];
     }
 
     while ( ( (nl = strchr(arr,'\n') ) != NULL ) && (arr < arr_end) )
     {
-        if ( isdigit(*(nl+1)) )
-        {sum += (*(nl+1)-'0');}
+        if ( isdigit(*(++nl)) )
+        {
 
-        arr = nl+1;
+            while (isdigit(*nl) )
+            {
+                *num_p++ = *nl++;  
+            }
+
+            *num_p = '\0';
+        
+        sum += strtol(num,NULL,10);   
+        
+        num_p = &num[0];
+       }
+
+        arr = nl;
     }
     
     static char ans[128];
 
-    sprintf(ans,"//\tThe sum of the digits at the beginning of the line is %d\n",sum);
+    sprintf(ans,"\n//\tThe sum of the digits at the beginning of the line is %d\n",sum);
 
     return &ans[0];
 }
