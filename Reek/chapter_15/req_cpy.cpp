@@ -1922,4 +1922,5 @@ else
 return 0;
 
 }
-//	The sum of the digits at the beginning of the line is 0
+
+//	The sum of the digits at the beginning of the lines is 0

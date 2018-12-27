@@ -53,7 +53,7 @@ char * sum_beg_ints(char * arr)
     
     static char ans[128];
 
-    sprintf(ans,"\n//\tThe sum of the digits at the beginning of the line is %d\n",sum);
+    sprintf(ans,"\n//\tThe sum of the digits at the beginning of the lines is %d\n",sum);
 
     return &ans[0];
 }
