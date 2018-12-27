@@ -19,11 +19,11 @@ char * sum_beg_ints(char * arr)
         arr = nl+1;
     }
     
-    char ans[128];
+    static char ans[128];
 
     sprintf(ans,"//\tThe sum of the digits at the beginning of the line is %d\n",sum);
 
-    return ans;
+    return &ans[0];
 }
 
 void free_arr(void * arr, int size)
@@ -52,8 +52,8 @@ int main(int argc, char ** argv)
     
    int exit_status = EXIT_SUCCESS;
     
-    const int SIZE = 1024*10000;
-
+    int SIZE = 1024*10000;
+    
     char * arr = malloc(sizeof(char)*SIZE);
 
     FILE * fp = fopen(*(argv+1),"rb");
@@ -65,23 +65,9 @@ int main(int argc, char ** argv)
         exit_status = EXIT_FAILURE;
 
     }
-
+    
     fread(arr,sizeof(arr[0]),SIZE,fp);
 
-    fclose(fp);
-
-    fp = fopen(argv[2],"wb");
-
-    if ( fp == NULL )
-    {
-        perror(*(argv+2));
-
-        exit_status = EXIT_FAILURE;
-
-    }
-
-    fwrite(arr,sizeof(arr[0]),SIZE,fp);
-    
     if ( fclose(fp) != 0 )
     {
         perror("fclose");
@@ -90,15 +76,32 @@ int main(int argc, char ** argv)
 
     }
 
-    fclose(fp);
+    fp = fopen(argv[2],"w+");
+    
+    fprintf(fp,"%s",arr);
+    
+    if ( fclose(fp) != 0 )
+    {
+        perror("fclose");
 
-    fp = fopen(argv[2],"ab");
+        exit(EXIT_FAILURE);
 
-    fwrite(sum_beg_ints,sizeof(*sum_beg_ints),128,fp);
+    }
+    
+    fp = fopen(argv[2],"a+");
 
-    fclose(fp);
+    fprintf(fp,"%s",sum_beg_ints(arr));
+
+    if ( fclose(fp) != 0 )
+    {
+        perror("fclose");
+
+        exit(EXIT_FAILURE);
+
+    }
 
 free_arr(arr,SIZE);
 
 return exit_status;
+
 }
