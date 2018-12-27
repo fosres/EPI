@@ -1,6 +1,6 @@
-I have a lot of swag up my sleeve.
+3I have a lot of swag up my sleeve.
 
-I don't appreciate that.
+3I don't appreciate that.
 
-So whatever.
-//	The sum of the digits at the beginning of the line is 0
+2So whatever.
+//	The sum of the digits at the beginning of the line is 8

@@ -11,10 +11,15 @@ char * sum_beg_ints(char * arr)
 
     const char * arr_end = arr + strlen(arr);
 
+    if ( isdigit(*arr))
+    {
+        sum += ( *arr - '0');
+    }
+
     while ( ( (nl = strchr(arr,'\n') ) != NULL ) && (arr < arr_end) )
     {
         if ( isdigit(*(nl+1)) )
-        {sum += *(nl+1);}
+        {sum += (*(nl+1)-'0');}
 
         arr = nl+1;
     }
