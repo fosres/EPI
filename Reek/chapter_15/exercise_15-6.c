@@ -52,7 +52,7 @@ return sum/num_words;
 
 }
 
-void line_proc(char * arr)
+void line_proc(FILE * input)
 {
 
     char buffer[BUFFER_SIZE];
@@ -60,10 +60,12 @@ void line_proc(char * arr)
     int num = 0;
 
     int i = 0;
-    
+
+    printf("\n");
+
     while (fgets(buffer,BUFFER_SIZE,input) != NULL )
     {
-        printf("%5.2f %s\n",avg_line_ints(buffer),buffer);
+        printf("%5.2f: %s\n\n",avg_line_ints(buffer),buffer);
     }
 
 }
@@ -98,13 +100,7 @@ int main(int argc, char ** argv)
         exit_status = EXIT_FAILURE;
     }
     
-    char * arr = malloc(sizeof(char)*1024*10000);
-    
-    fread(arr,sizeof(char),sizeof(char)*1024*10000,fp);
-
     line_proc(fp); 
-
-    free_arr(arr,sizeof(char)*1024*10000);
 
     if (fclose(fp) != 0)
     {
