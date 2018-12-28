@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <limits.h>
+#include <time.h>
 
-const int BUFFER_SIZE = 100;
+const int BUFFER_SIZE = 1024;
 
-int gen_int_file(char * fname) //returns int for exit_status
+
+int gen_int_file(char * fname) 
 {
+    srand((unsigned)time(NULL));
+
     int exit_status = 0; 
     
     FILE * fp = fopen(fname,"w+");
@@ -27,16 +31,18 @@ int gen_int_file(char * fname) //returns int for exit_status
 
     while ( i < 2000 )
     {
-        line_word_size = (int)((double)rand()/RAND_MAX*10.+0.5);  
+        line_word_size = (int)((double)rand()/RAND_MAX*100.+0.5);  
         
         while ( j < line_word_size )
         {
-            fprintf(fp,"%d ",(int)((double)rand()/RAND_MAX*INT_MAX+0.5)); 
+            fprintf(fp,"%d ",(int)((double)rand()/RAND_MAX*1000.+0.5)); 
 
             j++;
         }
 
             fprintf(fp,"\n"); 
+
+            j = 0;
 
         i++;
     }
@@ -59,9 +65,9 @@ double avg_line_ints(char * s)
 
   int num_words = 0;
 
-  static char buf[11];
+  char buf[64];
 
-  static char * buf_p = &buf[0];
+  char * buf_p = &buf[0];
 
   double sum = 0;
   
@@ -83,7 +89,7 @@ double avg_line_ints(char * s)
     
     }
 
-    else
+    else if (!isalnum(*s) && IN_WORD)
     {
         IN_WORD = 0;
 
@@ -93,6 +99,8 @@ double avg_line_ints(char * s)
 
        buf_p = &buf[0];
     }
+
+    else{}
 
     s++;
   }
@@ -109,8 +117,6 @@ void line_proc(FILE * input, FILE * output)
     int num = 0;
 
     int i = 0;
-
-    printf("\n");
 
     while (fgets(buffer,BUFFER_SIZE,input) != NULL )
     {
@@ -138,6 +144,7 @@ void free_arr(void * arr,int SIZE)
 
 int main(int argc, char ** argv)
 {
+    
     static char fname[64]; 
     
     printf("Enter desired name of file for generated random ints: "); 
@@ -150,18 +157,18 @@ int main(int argc, char ** argv)
     
     FILE * fp = fopen(fname,"r+");
 
-    FILE * op = fopen(fname,"w+");
+    FILE * op = fopen(argv[1],"w+");
 
     if (fp == NULL)
     {
-        perror(argv[1]);
+        perror(fname);
 
         exit_status = EXIT_FAILURE;
     }
 
     if (op == NULL)
     {
-        perror("op");
+        perror(argv[1]);
 
         exit_status = EXIT_FAILURE;
     }
