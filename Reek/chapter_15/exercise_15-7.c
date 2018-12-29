@@ -6,8 +6,11 @@
 
 const int BUFFER_SIZE = 1024;
 
+static char buf[64];
 
-int gen_int_file(char * fname) 
+static char * buf_p = &buf[0];
+
+int gen_int_file(const char * fname) 
 {
     srand((unsigned)time(NULL));
 
@@ -31,7 +34,7 @@ int gen_int_file(char * fname)
 
     while ( i < 2000 )
     {
-        line_word_size = (int)((double)rand()/RAND_MAX*100.+0.5);  
+        line_word_size = (int)((double)rand()/RAND_MAX*10.+1+0.5);  
         
         while ( j < line_word_size )
         {
@@ -59,21 +62,28 @@ int gen_int_file(char * fname)
 }
 
 
-double avg_line_ints(char * s)
+double avg_line_ints(const char * s)
 {
   int IN_WORD = 0;
 
   int num_words = 0;
 
-  char buf[64];
-
-  char * buf_p = &buf[0];
-
   double sum = 0;
-  
-  while ( *s != '\0')
+
+  buf_p = &buf[0];
+
+  const char * buf_end = buf_p+64;
+
+  while ( buf_p < (buf_end) )
   {
-    if (isalnum(*s) && !IN_WORD)
+    *buf_p++ = '\0';
+  }
+
+  buf_p = &buf[0];
+  
+  while ( *s != '\n')
+  {
+    if (isdigit(*s) && !IN_WORD)
     {
         IN_WORD = 1; 
 
@@ -82,14 +92,14 @@ double avg_line_ints(char * s)
         *buf_p++ = *s;
     }
 
-    else if (isalnum(*s) && IN_WORD)
+    else if (isdigit(*s) && IN_WORD)
     { 
     
         *buf_p++ = *s;
     
     }
 
-    else if (!isalnum(*s) && IN_WORD)
+    else if (!isdigit(*s) && IN_WORD)
     {
         IN_WORD = 0;
 
@@ -105,7 +115,7 @@ double avg_line_ints(char * s)
     s++;
   }
 
-return sum/num_words;
+return (double)sum/num_words;
 
 }
 
@@ -114,10 +124,6 @@ void line_proc(FILE * input, FILE * output)
 
     char buffer[BUFFER_SIZE];
     
-    int num = 0;
-
-    int i = 0;
-
     while (fgets(buffer,BUFFER_SIZE,input) != NULL )
     {
         fprintf(output,"%5.2f: %s\n\n",avg_line_ints(buffer),buffer);
