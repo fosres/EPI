@@ -79,7 +79,7 @@ while ( *++argv != NULL  )
        
         if ( mystrstr(buf,search_str) != NULL ) //argv[1] is the search string
         { 
-            printf("%s Line %d: %s\n",*argv,linenum,buf);
+            printf("%s: Line %d: %s\n",*argv,linenum,buf);
         
         }
         
