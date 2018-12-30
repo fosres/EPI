@@ -54,13 +54,11 @@ int main(int argc, char ** argv)
 
    char ** argv_end = &argv[0] + argc;
 
-   char * search_str = argv[1];
+   char * search_str = *++argv;
    
    FILE * in = NULL;
 
-   argv = argv+2;
-
-while ( argv < argv_end )
+while ( *++argv != NULL  )
 {
 
   in = fopen(*argv,"r+"); 
@@ -93,8 +91,6 @@ while ( argv < argv_end )
 
         exit(EXIT_FAILURE);
     }
-
-argv++;
 
 }
 

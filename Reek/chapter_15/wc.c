@@ -73,22 +73,24 @@ int count_words(FILE * in)
 
     int IN_WORD = 0;
 
-    while (fgetc(in) != EOF)
+    char ch = 0;
+
+    while ( (ch = fgetc(in)) != EOF)
     {
         
-        if (!isspace && !IN_WORD)
+        if (!isspace(ch) && !IN_WORD)
         {
             IN_WORD = 1;
 
             num_words++;
         }
 
-        else if (!isspace && IN_WORD)
+        else if (!isspace(ch) && IN_WORD)
         {
             
         }
 
-        else if (isspace && IN_WORD)
+        else if (isspace(ch) && IN_WORD)
         {
             IN_WORD = 0;
 
@@ -153,7 +155,7 @@ int main(int argc, char ** argv)
             case 'L':
             {
 
-                printf("%s: Max line length: %d\n",fname,count_lines(in));
+                printf("%s: Max line length: %d\n",fname,print_max_line_len(in));
 
                 rewind(in);
 
@@ -168,6 +170,14 @@ int main(int argc, char ** argv)
                 rewind(in);
                 
                 break;
+            }
+
+            default:
+            {
+                printf("Error: Unrecognized character flag: %c\n",**argv);
+
+                exit(EXIT_FAILURE);
+                
             }
         }
     } 
