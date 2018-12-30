@@ -14,10 +14,14 @@ typedef struct Node
 
 Node * insert_node(Node * r, char * s)
 {
-   r->val = s;
-
+   r->link = (Node *)malloc(sizeof(Node));
+   
    r = r->link;
-
+   
+   r->val = s;
+   
+   r->link = NULL;
+   
    return r;
 
 }
@@ -32,16 +36,17 @@ int size_of_sll(Node * r)
 
         r = r->link;
     }
-
+    
+    return len;
 }
 
-void free_sll(void * node)
+void free_sll(Node * node)
 {
     Node * q = NULL;
 
     while (node != NULL)
     {
-        q = ((Node *)node)->link;
+        q = node->link;
 
         free(node);
 
@@ -69,12 +74,14 @@ void free_arr(void * arr,const int SIZE)
 }
 
 
-void sll_to_str(char ** des, Node * src)
+void sll_to_str(char * des, Node * src)
 {
     
     const int sll_size = size_of_sll(src);
 
-    *des = (char *)malloc(sizeof(char)*sll_size);
+    printf("%d\n",sll_size); 
+    
+    des = (char *)malloc(sizeof(char)*sll_size);
    
     while (src != NULL)
     {
@@ -85,13 +92,17 @@ void sll_to_str(char ** des, Node * src)
 
     }
 
-   free_arr(*des,sll_size); 
+   free_arr(des,sll_size); 
 
 }
 
 int main(int argc, char ** argv)
 {
    Node * buf = (Node *)malloc(sizeof(Node));
+
+   buf->val = NULL;
+
+   buf->link = NULL;
 
    Node * head = buf;
 
@@ -101,15 +112,19 @@ int main(int argc, char ** argv)
         buf = insert_node(buf,*argv);
     
    }
-#if 0
+
+   Node ** head_p = &head;
+
+   (*head_p) = head->link;
+
    char * str = NULL;
 
-   sll_to_str(&str,head);
-
+   sll_to_str(str,head);
+   
    double d = strtod(str,NULL);
 
-   printf("%f\n",d);
-#endif
+//   printf("%f\n",d);
+   
    free_sll(head);
     
 return 0;
