@@ -40,6 +40,19 @@ int size_of_sll(Node * r)
     return len;
 }
 
+void print_sll(Node * r)
+{
+    while (r != NULL)
+    {
+        printf("%s ",r->val);
+
+        r = r->link;
+    }
+
+    printf("\n");
+
+}
+
 void free_sll(Node * node)
 {
     Node * q = NULL;
@@ -86,7 +99,7 @@ void sll_to_str(char * des, Node * src)
     while (src != NULL)
     {
     
-        strcat(*des,src->val);
+        strcat(des,src->val);
 
         src = src->link;
 
@@ -113,9 +126,13 @@ int main(int argc, char ** argv)
     
    }
 
+   buf->link = NULL;
+
    Node ** head_p = &head;
 
    (*head_p) = head->link;
+
+   print_sll(head);
 
    char * str = NULL;
 
