@@ -4,6 +4,9 @@
 
 int main(void)
 {
+#if 0
+    remove("tmpfile"); 
+    
     FILE * in = NULL;
 
     if ( ( in = fopen("test_file.txt","w+") ) == NULL)
@@ -22,8 +25,6 @@ int main(void)
 
     rewind(in);
 
-    fseek(in,4,SEEK_SET);
-
     printf("Current fpos is %ld\n",ftell(in));
     
     int i = 0;
@@ -35,22 +36,20 @@ int main(void)
     char const * insert_end = insert + strlen(insert);
     
     char ch = 0;
+    
+    fprintf(in,"%s",insert);
 
-    while (insert < insert_end )
-    {
-        fputc(*insert,in);
-
-        insert++;
-
-    }
     
     printf("Current fpos is %ld\n",ftell(in));
     
+    fgets(buf,1024,in);
 
-    while ( (ch = fgetc(in)) != '\n')
-        ;
-    
-    fgetc(in);
+    fgets(buf,1024,in);
+
+    fgets(buf,1024,in);
+
+    fgets(buf,1024,in);
+
 
     printf("Current fpos is %ld\n",ftell(in));
 
@@ -65,6 +64,9 @@ int main(void)
         insert++;
 
     }
+    
+    fprintf(in,"%s","\0");
+
 
     if (fclose(in) != 0)
     {
@@ -74,6 +76,30 @@ int main(void)
     }
 
     printf("%llu\n",FILENAME_MAX);
+#endif
+
+    FILE * test = fopen("stdin.c","r+");
+
+    rewind(test);
+
+    static char buf[1024];
+
+    while (fgets(buf,1024,stdin) != NULL)
+    {
+        printf("%s",buf);
+    }
+
+
+
+    if (fclose(test) != 0)
+    {
+        perror("fclose");
+
+        exit(EXIT_FAILURE);
+
+    }
+
+return 0;
 
 
 }
