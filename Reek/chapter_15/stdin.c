@@ -78,13 +78,13 @@ int main(void)
     printf("%llu\n",FILENAME_MAX);
 #endif
 
-    FILE * test = fopen("stdin.c","r+");
+    FILE * test = fopen("test.txt","r+");
 
     rewind(test);
 
     static char buf[1024];
 
-    while (fgets(buf,1024,stdin) != NULL)
+    while (fgets(buf,1024,test) != NULL)
     {
         printf("%s",buf);
     }
