@@ -22,6 +22,28 @@ void reverse_order(tree * root)
 	reverse_order(root->left);
 }
 
+unsigned k = 2;
+
+void k_largest(tree * root)
+{
+	if ( ( root == 0x0 ) || ( k <= 0 ) ) { return; }
+
+	if ( ( k > 0 ) && ( root->right != 0x0 ) )
+	{
+		k_largest(root->right);
+	}
+
+	if ( ( k > 0 ) )
+	{
+		printf("%d\n",root->val); k--;
+	}
+
+	if ( ( k > 0 ) && ( root->left != 0x0 ) )
+	{
+		k_largest(root->left);
+	}
+}
+
 void insert(tree * root, const int val)
 {
 	if ( (root->left == 0x0) && (val < root->val) )
@@ -65,6 +87,8 @@ int main(void)
 
 	insert(root,5);
 
-	reverse_order(root);	
+//	reverse_order(root);	
+	
+	k_largest(root);
 }
 
