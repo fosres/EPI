@@ -11,18 +11,9 @@ typedef struct tree
 
 } tree;
 
-void reverse_order(tree * root)
-{
-	if ( root == 0x0 ) { return; }	
-	
-	reverse_order(root->right);	
 
-	printf("%d\n",root->val);
+unsigned k = 0;
 
-	reverse_order(root->left);
-}
-
-unsigned k = 2;
 
 void k_largest(tree * root)
 {
@@ -71,23 +62,20 @@ void insert(tree * root, const int val)
 	}
 }
 
-int main(void)
+int main(int argc, char ** argv)
 {
+	k = strtol(argv[1],NULL,10);		
+
 	tree * root = (tree *)calloc(1,sizeof(tree));
 
-	root->val = 2;
+	root->val = strtol(argv[2],NULL,10);
 
-	insert(root,1);
+	argv = &argv[2];
 
-	insert(root,3);
-
-	insert(root,0);
-
-	insert(root,4);
-
-	insert(root,5);
-
-//	reverse_order(root);	
+	while ( *++argv != NULL )
+	{
+		insert(root,strtol(*argv,NULL,10));
+	}
 	
 	k_largest(root);
 }
