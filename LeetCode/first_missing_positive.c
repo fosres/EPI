@@ -16,24 +16,24 @@ int first_missing_positive(int *nums, int numsSize) {
 		
 		if ( nums[i] > 0 ) {
 			
-			hash_table[nums[i]] = 1;
+			hash_table[nums[i]-1] = 1;
 		}
 
 		if ( nums[j] > 0 ) {
 			
-			hash_table[nums[j]] = 1;
+			hash_table[nums[j]-1] = 1;
 		}
 
 	}
 
 	if ( (i==j) && (nums[i] > 0) ) {
 		
-		hash_table[nums[i]] = 1;
+		hash_table[nums[i]-1] = 1;
 	}
 
 	int ans = 1;
 
-	while ( hash_table[ans] == 1 ) { ans++;}
+	while ( hash_table[ans-1] == 1 ) { ans++;}
 	
 	free(hash_table);
 
