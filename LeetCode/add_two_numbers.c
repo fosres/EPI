@@ -85,11 +85,13 @@ int main(void) {
 
 	L * s_0 = s;
 
-	s = insert_sll(&s,2);
+	s = insert_sll(&s,0);
 
-	s = insert_sll(&s,4);
+	s = insert_sll(&s,0);
 
-	s = insert_sll(&s,3);
+	s = insert_sll(&s,0);
+	
+	s = insert_sll(&s,1);
 
 	s = s_0->l;
 
@@ -105,11 +107,7 @@ int main(void) {
 
 	L * t_0 = t;
 
-	t = insert_sll(&t,5);
-
-	t = insert_sll(&t,6);
-
-	t = insert_sll(&t,4);
+	t = insert_sll(&t,0);
 
 	t = t_0->l;
 
